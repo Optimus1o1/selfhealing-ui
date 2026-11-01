@@ -1,0 +1,53 @@
+name: CI Pipeline - Self-Healing UI Automation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-and-evaluate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -e .
+
+    - name: Install Playwright Browsers
+      run: |
+        playwright install chromium --with-deps
+
+    - name: Run Unit Tests
+      run: |
+        pytest tests/unit -v
+
+    - name: Run Benchmark & Evaluation
+      run: |
+        python tests/evaluation/benchmark.py
+
+    - name: Run End-to-End Healing Scenarios
+      run: |
+        pytest tests/healing -v
+
+    - name: Generate Reports
+      run: |
+        python -m selfheal.cli report --format all
+
+    - name: Upload Test Reports Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: selfheal-reports
+        path: artifacts/reports/

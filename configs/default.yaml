@@ -1,0 +1,22 @@
+framework:
+  project_name: "SelfHealing Demo"
+  policy: "assisted" # options: observe, assisted, automatic
+  database_path: "artifacts/selfheal.db"
+  screenshot_dir: "artifacts/screenshots"
+  report_dir: "artifacts/reports"
+  record_screenshots: false
+  grace_period_ms: 500
+  retry_limit: 1
+
+thresholds:
+  minimum_score: 0.80
+  minimum_score_margin: 0.10
+  max_candidates: 100
+
+weights:
+  text: 0.30
+  type_and_role: 0.20
+  attributes: 0.20
+  parent_context: 0.15
+  children_structure: 0.10
+  position: 0.05

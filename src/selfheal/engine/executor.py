@@ -57,8 +57,8 @@ class ExecutionManager:
         if record_baseline_if_missing and not self.repo.get_active_fingerprint(target_key):
             pre_captured_fp = self._capture_baseline_snapshot(page, original_selector, target_key)
 
-        # Set default timeout for action to fail fast (e.g. 2500ms) rather than waiting 30s
-        action_kwargs.setdefault("timeout", 2500)
+        # Set default timeout for action to fail fast based on configuration
+        action_kwargs.setdefault("timeout", self.config.framework.action_timeout_ms)
 
         # 1. First, attempt standard execution
         original_exc = None

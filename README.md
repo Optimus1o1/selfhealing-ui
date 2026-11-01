@@ -1,5 +1,6 @@
 # Self-Healing UI Automation Framework
 
+**Version:** 1.0.0rc1  
 **Moon Sanctum Labs** — *Decode. Build. Evolve.*  
 **Lead Engineer:** Aniket Nandi (Kolkata, IST)
 
@@ -61,7 +62,7 @@ flowchart TD
 
 ## 🚀 Key Architectural Principles
 
-1. **Deterministic Intelligence (No LLMs)**: Structured element matching using RapidFuzz string metrics (Jaro-Winkler, token sort), UI action synonym ontology, tag/ARIA role compatibility, attribute Jaccard overlap, parent hierarchy, and normalized spatial geometry.
+1. **Deterministic Intelligence (No LLMs)**: Structured element matching using RapidFuzz string metrics (Levenshtein, Jaro-Winkler, token sort), UI action synonym ontology, tag/ARIA role compatibility, attribute evolution Jaccard overlap, parent hierarchy, and normalized spatial geometry.
 2. **Failure Classification Engine**: Triage distinguishes true locator absence (`count == 0`) from actionability defects (`ELEMENT_HIDDEN`, `ELEMENT_DISABLED`, `AMBIGUOUS_LOCATOR`, `INVALID_SELECTOR`, `ASSERTION_FAILURE`).
 3. **Safe Composition & Delegation**: Uses `SelfHealingPage` and `SelfHealingLocator` wrapping Playwright objects cleanly without mutating global internals or monkey-patching libraries.
 4. **Stable Element Identities**: Supports explicit and inferred `target_key` (e.g. `auth.login_submit`) to disambiguate identical buttons across forms or pages.
@@ -71,47 +72,58 @@ flowchart TD
 
 ---
 
-## 📊 Empirical Evaluation & Benchmark (57 Scenarios)
+## 📊 Comprehensive Empirical Evaluation (109 Scenarios)
 
-Evaluated across **57 independent, diverse UI mutation scenarios** across 12 distinct categories:
+The framework has been evaluated across **109 independent UI mutation scenarios** across two distinct test suites:
 
-| Category | Total Scenarios | Passed | Result |
-|---|---|---|---|
-| **Renamed IDs** (kebab, camel, snake, hash, prefixes) | 6 | 6 | 100.0% |
-| **Changed CSS Classes** (Tailwind, BEM, Bootstrap) | 6 | 6 | 100.0% |
-| **Modified Text** (casing, whitespace, affixes) | 6 | 5 | 83.3% |
-| **Semantic Synonyms** (Login/Sign In, Register/Sign Up) | 8 | 8 | 100.0% |
-| **DOM Restructuring** (wrappers, card footers, grids) | 5 | 5 | 100.0% |
-| **Spatial Shifts & Reordering** (moved, widened) | 4 | 4 | 100.0% |
-| **Cross-Tag Mutations** (button $\leftrightarrow$ anchor $\leftrightarrow$ input) | 4 | 1 | 25.0% |
-| **Context Disambiguation** (form vs footer vs header) | 3 | 3 | 100.0% |
-| **Ambiguous Candidates** (margin $< 0.10$ ties) | 4 | 4 | 100.0% (Rejected) |
-| **Missing / Removed Targets** (target deleted) | 4 | 4 | 100.0% (Rejected) |
-| **Actionability Defects** (hidden, disabled) | 4 | 4 | 100.0% (Rejected) |
-| **Syntax & Assertion Errors** (invalid selectors) | 3 | 3 | 100.0% (Rejected) |
-
-### Aggregate Metrics:
-- **Total Scenarios Evaluated**: 57
+### 1. Baseline Evaluation Dataset (57 Scenarios)
+- **Scenarios Evaluated**: 57
 - **Healing Precision**: **100.00%** (0 false positive interactions dispatched)
 - **Healing Recall**: **90.48%** (38/42 eligible modifications repaired)
-- **False Positive Rate (FPR)**: **0.00%** (Target: $< 5\%$)
+- **False Positive Rate (FPR)**: **0.00%**
 - **Overall Accuracy**: **92.98%**
+
+### 2. Independent Holdout Validation Dataset (52 Unseen Scenarios)
+- **Scenarios Evaluated**: 52
+- **Healing Precision**: **100.00%** (0 false positive interactions dispatched)
+- **Healing Recall**: **80.95%** (17/21 eligible modifications repaired)
+- **False Positive Rate (FPR)**: **0.00%**
+- **Overall Accuracy**: **92.31%**
+- **F1 Score**: **89.47%**
+- **Abstention Rate**: **67.31%**
+
+### 3. Combined Benchmark Totals
+| Metric | Baseline Suite (57) | Holdout Suite (52) | **Combined (109 Scenarios)** |
+|---|---|---|---|
+| **True Positives (TP)** | 38 | 17 | **55** |
+| **True Negatives (TN)** | 15 | 31 | **46** |
+| **False Positives (FP)** | 0 | 0 | **0 (0.00%)** |
+| **False Negatives (FN)** | 4 | 4 | **8** |
+| **Healing Precision** | 100.00% | 100.00% | **100.00%** |
+| **False Positive Rate** | 0.00% | 0.00% | **0.00%** |
+| **Overall Accuracy** | 92.98% | 92.31% | **92.66%** |
 
 ---
 
-## ⚡ Multi-Tier Performance Benchmarks
+## ⚡ Multi-Tier Performance Benchmarks (500+ Iterations)
 
-Performance profile measured across 50 iterations on live Chromium:
+Performance measured across 500 iterations on live Chromium (with 50 warm-up runs):
 
-| Tier / Component | Mean Latency | Median (P50) | 95th Percentile (P95) | Description |
-|---|---|---|---|---|
-| **Pure Algorithm Engine** | **0.53 ms** | **0.47 ms** | **1.08 ms** | Candidate scoring & decision logic (50 candidates) |
-| **DOM Extraction (in-browser)** | **3.56 ms** | **2.93 ms** | **6.77 ms** | JavaScript evaluation via `page.evaluate()` |
-| **Normal Execution Overhead** | **24.09 ms** | **22.19 ms** | **25.51 ms** | Present element action via `SelfHealingLocator` |
-| **Full Browser Healing Cycle** | **3,099.55 ms** | **3,073.40 ms** | **3,103.06 ms** | Timeout (2500ms) + Grace (500ms) + Scan + Retried Click |
+| Component / Layer | Mean (ms) | Median (P50) | 90th %ile (P90) | 95th %ile (P95) | Notes |
+|---|---|---|---|---|---|
+| **Pure Algorithm Scoring** | **0.69 ms** | **0.61 ms** | **0.81 ms** | **1.13 ms** | 50 candidates scored across 6 dimensions |
+| **Decision Engine** | **0.005 ms** | **0.004 ms** | **0.008 ms** | **0.012 ms** | Confidence threshold & margin gating |
+| **DOM Extraction (in-browser)** | **2.30 ms** | **2.18 ms** | **2.99 ms** | **3.21 ms** | Native JS evaluation via `page.evaluate()` |
+| **Normal Execution Overhead** | **23.72 ms** | **23.34 ms** | **27.09 ms** | **28.88 ms** | Present element action via `SelfHealingLocator` |
+| **Standard Healing (2500ms timeout)** | **3,072.27 ms** | **3,071.61 ms** | **3,094.55 ms** | **3,099.12 ms** | Timeout (2500ms) + Grace (500ms) + Retry |
+| **Fast Healing (1000ms timeout)** | **1,572.06 ms** | **1,567.89 ms** | **1,591.01 ms** | **1,591.69 ms** | 48.8% latency reduction with `action_timeout_ms: 1000` |
+| **Rejected Healing (Actionability)** | **1,356.23 ms** | **1,356.16 ms** | **1,363.33 ms** | **1,367.06 ms** | Fast short-circuit on disabled/hidden elements |
 
-> [!NOTE]
-> The algorithmic healing decision executes in sub-millisecond time ($< 1\text{ ms}$). The full browser cycle is dominated by Playwright's action timeout and dynamic grace window, ensuring genuine elements are given time to appear before healing begins.
+### Latency Budget Breakdown:
+- **Playwright Action Timeout (2,500 ms)** accounts for **81.37%** of browser healing time.
+- **Dynamic Element Grace Period (500 ms)** accounts for **16.27%** of browser healing time.
+- **Pure Computation Overhead** (Algorithm + Decision + DOM scan) is **2.998 ms** ($< 0.1\%$ of total time).
+- Configuring `action_timeout_ms: 1000` cuts browser healing latency down to **~1.57 seconds** without compromising dynamic element recognition.
 
 ---
 
@@ -121,13 +133,13 @@ Performance profile measured across 50 iterations on live Chromium:
 - Python 3.11 or 3.12
 - Node.js (for Playwright browser binaries)
 
-### 2. Install Package
+### 2. Install from Wheel or Source
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/self-healing-ui-automation.git
-cd self-healing-ui-automation
+git clone https://github.com/moonsanctum/selfhealing-ui.git
+cd selfhealing-ui
 
-# Install dependencies and editable package
+# Install dependencies and package in editable mode
 pip install -r requirements.txt
 pip install -e .
 
@@ -159,7 +171,15 @@ def test_user_authentication(page):
     assert "/dashboard" in sh_page.raw_page.url
 ```
 
-### 2. Locator Chaining
+### 2. Pytest Plugin Integration (Zero-Config)
+The package registers `pytest11` entry points automatically. You can consume `healed_page` directly without manual imports:
+```python
+def test_checkout(healed_page):
+    healed_page.goto("https://store.example.com/checkout")
+    healed_page.healed_locator("#payBtn", key="checkout.pay_button").click()
+```
+
+### 3. Locator Chaining
 `SelfHealingLocator` supports standard chaining methods while preserving stable key derivation:
 ```python
 # Chaining with first, last, nth
@@ -168,14 +188,6 @@ submit_btn.click()
 
 cancel_btn = sh_page.healed_locator(".btn-action", key="form.action_buttons").last
 cancel_btn.click()
-```
-
-### 3. Pytest Fixture Integration
-Use the built-in `healed_page` fixture directly in test functions:
-```python
-def test_checkout(healed_page):
-    healed_page.goto("https://store.example.com/checkout")
-    healed_page.healed_locator("#payBtn", key="checkout.pay_button").click()
 ```
 
 ---
@@ -188,7 +200,10 @@ framework:
   policy: "assisted"            # options: observe, assisted, automatic
   database_path: "artifacts/selfheal.db"
   report_dir: "artifacts/reports"
+  screenshot_dir: "artifacts/screenshots"
+  record_screenshots: false     # opt-in screenshot capture
   grace_period_ms: 500          # wait window for dynamic SPA hydration
+  action_timeout_ms: 2500       # action timeout before triggering healing
   retry_limit: 1
 
 thresholds:
@@ -205,18 +220,13 @@ weights:
   position: 0.05                # normalized bounding box distance
 ```
 
-### Operating Policies:
-- **`observe`**: Detects and logs candidate repairs, but never dispatches retries.
-- **`assisted`** *(Default)*: Repairs the locator in memory, retries the action, and logs a `pending_review` event in the database for engineer approval.
-- **`automatic`**: Repairs, retries, and automatically promotes the healed locator into the active baseline repository.
-
 ---
 
 ## 🖥️ Streamlit Audit Dashboard & Reports
 
 ### 1. Launching Dashboard
 ```bash
-python -m selfheal.cli dashboard --port 8501
+selfheal dashboard --port 8501
 ```
 Navigate to `http://localhost:8501` to access:
 - **Executive KPIs**: Total runs, healing count, success rate, average confidence, and latency.
@@ -227,7 +237,7 @@ Navigate to `http://localhost:8501` to access:
 ### 2. Generating Standalone Reports
 ```bash
 # Generate both JSON and Jinja2 HTML reports
-python -m selfheal.cli report --format all
+selfheal report --format all
 ```
 Reports are written to `artifacts/reports/report.html` and `artifacts/reports/report.json`.
 
@@ -236,38 +246,37 @@ Reports are written to `artifacts/reports/report.html` and `artifacts/reports/re
 ## 🧪 Running Tests & Benchmarks
 
 ```bash
-# Run all unit, integration, edge case, and healing tests
+# Run all 23 unit, integration, edge case, and healing tests
 python -m pytest tests/ -v
 
-# Run the 57-scenario evaluation benchmark
+# Run the 57-scenario baseline evaluation benchmark
 python tests/evaluation/benchmark.py
 
-# Run the multi-tier performance profiler (P50/P95)
+# Run the 52-scenario independent holdout validation
+python tests/evaluation/holdout_benchmark.py
+
+# Run the multi-tier performance profiler (500+ iterations)
 python tests/evaluation/profile_performance.py
 
 # List active baseline element fingerprints
-python -m selfheal.cli baselines
+selfheal baselines
 
 # Reset database for fresh test execution
-python -m selfheal.cli reset-db
+selfheal reset-db
 ```
 
 ---
 
-## ⚠️ Known Limitations & Edge Cases
+## 🔒 Security & Privacy
 
-1. **Canvas / WebGL**: Elements rendered exclusively inside HTML5 `<canvas>` do not exist in the DOM tree and cannot be inspected via DOM traversal.
-2. **Shadow DOM**: Standard DOM queries do not automatically penetrate closed shadow roots (`mode: "closed"`).
-3. **Identical Twin Elements**: If a page contains two identical buttons (e.g. duplicate pagination arrows) with identical parent containers, the framework correctly rejects healing as ambiguous (`REJECTED_AMBIGUOUS_MATCH`) to avoid accidental clicks.
-4. **Complete Semantic Divergence**: If an element's text, ID, classes, container, and attributes are all changed simultaneously, similarity score will fall below the $0.80$ threshold and be rejected safely.
+The framework follows privacy-preserving, local-first design principles. For details, see [SECURITY.md](SECURITY.md).
+- **Password Redaction**: Password values and inner text are suppressed to empty strings before database persistence.
+- **XSS Prevention**: HTML report templates strictly enforce autoescaping via Jinja2.
+- **SQLi Prevention**: All SQLite queries are 100% parameterized.
+- **Zero Cloud Leakage**: No DOM snapshots or selectors are transmitted to third-party LLMs or cloud endpoints.
 
 ---
 
-## ❓ Troubleshooting & FAQ
+## 📄 License
 
-- **Q: Why did my test fail without healing?**  
-  *A:* Inspect the logs or dashboard. The Failure Classifier will reject healing if the element exists but is hidden (`display: none`), disabled (`disabled`), or if the selector syntax is invalid.
-- **Q: How do I handle dynamic test IDs?**  
-  *A:* Bind the locator to an explicit `target_key`: `sh_page.healed_locator("#dynamic-123", key="cart.checkout")`. The framework relies on the logical key rather than brittle selectors.
-- **Q: Can the database handle concurrent test execution?**  
-  *A:* Yes. SQLite is configured with Write-Ahead Logging (`PRAGMA journal_mode=WAL;`) and a busy timeout of 5,000 ms to support concurrent readers and writers on the same host.
+Distributed under the [MIT License](LICENSE). Copyright (c) 2026 Moon Sanctum Labs.

@@ -48,6 +48,7 @@ class FrameworkSettings(BaseModel):
     report_dir: str = "artifacts/reports"
     record_screenshots: bool = False
     grace_period_ms: int = 500
+    action_timeout_ms: int = 2500
     retry_limit: int = 1
 
 

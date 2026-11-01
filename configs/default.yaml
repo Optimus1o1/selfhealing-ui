@@ -6,6 +6,7 @@ framework:
   report_dir: "artifacts/reports"
   record_screenshots: false
   grace_period_ms: 500
+  action_timeout_ms: 2500
   retry_limit: 1
 
 thresholds:

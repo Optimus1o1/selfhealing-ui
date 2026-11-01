@@ -43,7 +43,10 @@ class ElementFingerprint(BaseModel):
         Never store raw password values, auth tokens, or private credentials.
         """
         sanitized = {}
-        sensitive_keys = {"value", "password", "token", "secret", "auth", "session"}
+        sensitive_keys = {
+            "value", "password", "token", "secret", "auth", "session",
+            "credential", "credit_card", "cvv", "apikey", "api_key"
+        }
         for k, v in raw_attrs.items():
             k_lower = k.lower()
             if any(s in k_lower for s in sensitive_keys) and k_lower != "type":
@@ -53,6 +56,8 @@ class ElementFingerprint(BaseModel):
         return sanitized
 
     def to_db_row(self) -> dict[str, Any]:
+        # Redact inner_text for password inputs as safety defense-in-depth
+        safe_inner_text = "" if self.input_type == "password" else self.inner_text
         return {
             "target_key": self.target_key,
             "version": self.version,
@@ -60,7 +65,7 @@ class ElementFingerprint(BaseModel):
             "tag_name": self.tag_name,
             "element_id": self.element_id,
             "class_list": json.dumps(self.class_list),
-            "inner_text": self.inner_text,
+            "inner_text": safe_inner_text,
             "aria_role": self.aria_role,
             "accessible_name": self.accessible_name,
             "input_type": self.input_type,

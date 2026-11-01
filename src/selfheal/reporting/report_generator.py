@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import datetime, timezone
 import json
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from selfheal.baseline.repository import BaselineRepository
 
 
@@ -11,7 +11,10 @@ class ReportGenerator:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         template_dir = Path(__file__).parent / "templates"
-        self.jinja_env = Environment(loader=FileSystemLoader(str(template_dir)))
+        self.jinja_env = Environment(
+            loader=FileSystemLoader(str(template_dir)),
+            autoescape=select_autoescape(["html", "xml"])
+        )
 
     def generate_json_report(self, run_id: int | None = None, filename: str = "report.json") -> Path:
         events = self.repo.get_healing_events(run_id=run_id)

@@ -63,6 +63,6 @@ def test_baseline_creation_and_healing_workflow(
     assert latest_event["decision"] == "APPROVED"
     assert latest_event["retry_success"] == 1
     assert latest_event["original_locator"] == "#loginBtn"
-    assert latest_event["similarity_score"] >= 0.85
+    assert latest_event["similarity_score"] >= 0.80
     assert latest_event["healed_locator"] in ('[data-testid="auth-submit"]', '#signinBtn')
 

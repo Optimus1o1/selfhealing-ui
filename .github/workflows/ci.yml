@@ -1,4 +1,4 @@
-name: CI Pipeline - Self-Healing UI Automation
+name: CI Pipeline - Self-Healing UI Automation Framework
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  test-and-evaluate:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,37 +20,47 @@ jobs:
         python-version: "3.12"
         cache: 'pip'
 
-    - name: Install dependencies
+    - name: Install dependencies & build tools
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip build wheel
         pip install -r requirements.txt
         pip install -e .
+
+    - name: Build Package Distribution (Wheel & Sdist)
+      run: |
+        python -m build
+        ls -la dist/
 
     - name: Install Playwright Browsers
       run: |
         playwright install chromium --with-deps
 
-    - name: Run Unit Tests
+    - name: Run Test Suite (23 Unit and Healing Tests)
       run: |
-        pytest tests/unit -v
+        python -m pytest tests/ -v
 
-    - name: Run Benchmark & Evaluation (57 Scenarios)
+    - name: Run 57-Scenario Baseline Evaluation Benchmark
       run: |
         python tests/evaluation/benchmark.py
 
-    - name: Run End-to-End Healing Scenarios & Lifecycle Validation
+    - name: Run 52-Scenario Independent Holdout Validation
       run: |
-        pytest tests/healing -v
+        python tests/evaluation/holdout_benchmark.py
 
-    - name: Generate Reports
+    - name: Run Multi-Tier Performance Profiler (500+ Iterations)
       run: |
+        python tests/evaluation/profile_performance.py
+
+    - name: Verify CLI Functionality
+      run: |
+        selfheal --help
         python -m selfheal.cli report --format all
 
-    - name: Upload Test Reports & Benchmark Artifacts
+    - name: Upload Test Reports, Distributions & Benchmark Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: selfheal-artifacts
+        name: selfheal-rc1-artifacts
         path: |
+          dist/
           artifacts/reports/
           artifacts/selfheal.db
-

@@ -105,3 +105,4 @@ def test_complete_ten_step_lifecycle(
     assert latest_hist["new_locator"] == event["healed_locator"]
     assert latest_hist["approved_by"] == "qa_engineer_lead"
     assert latest_hist["change_type"] == "HEALED_PROMOTED"
+

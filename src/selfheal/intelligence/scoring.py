@@ -39,7 +39,7 @@ class SimilarityScorer:
     def score_candidate(self, base: ElementFingerprint, cand: CandidateElement) -> ScoredCandidate:
         text_s = compute_text_similarity(base.inner_text, cand.inner_text, base.accessible_name, cand.accessible_name)
         type_s = compute_type_and_role_similarity(base, cand)
-        attr_s = compute_attributes_similarity(base.attributes, cand.attributes)
+        attr_s = compute_attributes_similarity(base, cand)
         parent_s = compute_parent_similarity(base, cand)
         child_s = compute_children_similarity(base, cand)
         pos_s = compute_position_similarity(base.bounding_box, cand.bounding_box)

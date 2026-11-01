@@ -64,3 +64,4 @@ class DOMScanner:
             )
             candidates.append(candidate)
         return candidates
+

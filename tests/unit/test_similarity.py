@@ -90,3 +90,4 @@ def test_weighted_scoring_aggregation():
 
     scored = scorer.score_candidate(base, cand)
     assert scored.total_score >= 0.95
+

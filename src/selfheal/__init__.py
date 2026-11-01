@@ -10,3 +10,4 @@ from selfheal.config import SelfHealConfig
 
 __version__ = "0.1.0"
 __all__ = ["SelfHealingPage", "SelfHealingLocator", "SelfHealConfig"]
+

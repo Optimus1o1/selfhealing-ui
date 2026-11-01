@@ -46,3 +46,4 @@ def test_ambiguous_locator_rejected_without_healing(
         healed_page.healed_locator(".ambiguous-btn", key="edge.ambiguous").click(timeout=1000)
 
     assert "AMBIGUOUS_LOCATOR" in str(exc_info.value)
+

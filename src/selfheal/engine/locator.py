@@ -142,6 +142,36 @@ class SelfHealingLocator:
     def bounding_box(self, **kwargs: Any) -> Any:
         return self._locator.bounding_box(**kwargs)
 
+    @property
+    def first(self) -> "SelfHealingLocator":
+        return SelfHealingLocator(
+            page=self._page,
+            selector=f"{self._selector} >> nth=0",
+            target_key=f"{self._target_key}.first",
+            executor=self._executor,
+            playwright_locator=self._locator.first
+        )
+
+    @property
+    def last(self) -> "SelfHealingLocator":
+        return SelfHealingLocator(
+            page=self._page,
+            selector=f"{self._selector} >> nth=-1",
+            target_key=f"{self._target_key}.last",
+            executor=self._executor,
+            playwright_locator=self._locator.last
+        )
+
+    def nth(self, index: int) -> "SelfHealingLocator":
+        return SelfHealingLocator(
+            page=self._page,
+            selector=f"{self._selector} >> nth={index}",
+            target_key=f"{self._target_key}[{index}]",
+            executor=self._executor,
+            playwright_locator=self._locator.nth(index)
+        )
+
     def __getattr__(self, name: str) -> Any:
         """Forward any other Playwright locator methods to underlying locator."""
         return getattr(self._locator, name)
+

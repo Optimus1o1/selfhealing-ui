@@ -84,3 +84,4 @@ CREATE TABLE IF NOT EXISTS locator_history (
 );
 
 CREATE INDEX IF NOT EXISTS idx_history_key ON locator_history(target_key);
+

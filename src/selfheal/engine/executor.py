@@ -61,6 +61,7 @@ class ExecutionManager:
         action_kwargs.setdefault("timeout", 2500)
 
         # 1. First, attempt standard execution
+        original_exc = None
         try:
             result = action_fn(loc, **action_kwargs)
 
@@ -69,11 +70,15 @@ class ExecutionManager:
                 self.repo.save_fingerprint(pre_captured_fp)
 
             return result
-        except Exception as original_exc:
-            pass  # Fall through to failure classification and healing
+        except Exception as e:
+            original_exc = e  # Capture exception before Python unbinds it after except block
 
         # 2. Failure Classification
-        classification = self.classifier.classify_failure(page, original_selector)
+        classification = self.classifier.classify_failure(
+            page,
+            original_selector,
+            original_exception=original_exc
+        )
         if not classification.is_healable:
             # Actionability failure (hidden/disabled/ambiguous) or assertion failure
             self._log_rejected_event(
@@ -150,9 +155,25 @@ class ExecutionManager:
                 f"with score {decision.similarity_score:.4f}, but execution retry is disabled."
             )
 
-        # 7. Safe Retry Once with Healed Locator
+        # 7. Safe Retry Once with Healed Locator (Strict Uniqueness Verification)
         try:
-            healed_loc = page.locator(decision.healed_locator)
+            healed_count = page.locator(decision.healed_locator).count()
+            if healed_count != 1:
+                self._log_rejected_event(
+                    target_key=target_key,
+                    original_locator=original_selector,
+                    decision="REJECTED_AMBIGUOUS_RETRY",
+                    reason=f"Candidate locator '{decision.healed_locator}' resolved to {healed_count} elements on page (strictly 1 required).",
+                    latency_ms=healing_latency,
+                    similarity_score=decision.similarity_score,
+                    score_breakdown=decision.score_breakdown
+                )
+                raise HealingExecutionError(
+                    f"Healed locator '{decision.healed_locator}' resolved to {healed_count} elements; "
+                    "strictly 1 element required to prevent ambiguous clicks."
+                )
+
+            healed_loc = page.locator(decision.healed_locator).first
             retry_result = action_fn(healed_loc, **action_kwargs)
 
             # Execution succeeded!
@@ -199,6 +220,7 @@ class ExecutionManager:
 
     def _capture_baseline_snapshot(self, page: "Page", selector: str, target_key: str) -> Optional[ElementFingerprint]:
         """Captures a baseline element fingerprint before an action is executed."""
+        import re
         try:
             loc = page.locator(selector).first
             if not loc.is_visible():
@@ -207,32 +229,46 @@ class ExecutionManager:
             candidates = self.scanner.scan(page, max_candidates=100)
             matched_candidate = None
 
-            # 1. Match by clean ID
-            clean_id = selector.lstrip("#") if selector.startswith("#") else ""
-            if clean_id:
+            # 1. Match by bounding box
+            bbox = loc.bounding_box()
+            if bbox:
                 for c in candidates:
-                    if c.element_id == clean_id:
+                    if (
+                        abs(c.bounding_box.x - bbox["x"]) < 5 and
+                        abs(c.bounding_box.y - bbox["y"]) < 5
+                    ):
                         matched_candidate = c
                         break
 
-            # 2. Match by bounding box
+            # 2. Match by clean ID / regex #id
             if not matched_candidate:
-                bbox = loc.bounding_box()
-                if bbox:
+                id_match = re.search(r'#([A-Za-z0-9_-]+)', selector)
+                if id_match:
+                    target_id = id_match.group(1)
                     for c in candidates:
-                        if (
-                            abs(c.bounding_box.x - bbox["x"]) < 5 and
-                            abs(c.bounding_box.y - bbox["y"]) < 5
-                        ):
+                        if c.element_id == target_id:
                             matched_candidate = c
                             break
 
-            # 3. Match by name or text
-            if not matched_candidate and candidates:
-                for c in candidates:
-                    if c.attributes.get("name") and f'[name="{c.attributes.get("name")}"]' in selector:
-                        matched_candidate = c
-                        break
+            # 3. Match by data-testid
+            if not matched_candidate:
+                testid_match = re.search(r'data-testid=["\']([^"\']+)["\']', selector)
+                if testid_match:
+                    target_tid = testid_match.group(1)
+                    for c in candidates:
+                        if c.attributes.get("data-testid") == target_tid:
+                            matched_candidate = c
+                            break
+
+            # 4. Match by name
+            if not matched_candidate:
+                name_match = re.search(r'name=["\']([^"\']+)["\']', selector)
+                if name_match:
+                    target_name = name_match.group(1)
+                    for c in candidates:
+                        if c.attributes.get("name") == target_name:
+                            matched_candidate = c
+                            break
 
             if matched_candidate:
                 return ElementFingerprint(

@@ -149,3 +149,4 @@ with tab4:
         st.info("No promotions or manual overrides recorded yet.")
     else:
         st.dataframe(pd.DataFrame(history), use_container_width=True)
+

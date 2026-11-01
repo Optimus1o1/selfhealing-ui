@@ -94,8 +94,8 @@
             children_count: el.children.length,
             children_tags: childTags,
             bounding_box: {
-                x: rect.x + window.scrollX,
-                y: rect.y + window.scrollY,
+                x: rect.x,
+                y: rect.y,
                 width: rect.width,
                 height: rect.height
             },
@@ -105,3 +105,4 @@
 
     return results;
 })();
+

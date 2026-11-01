@@ -56,3 +56,4 @@ def test_fingerprint_db_roundtrip():
     assert restored.bounding_box.x == 150.0
     assert restored.bounding_box.width == 120.0
     assert restored.attributes["data-testid"] == "auth-btn"
+

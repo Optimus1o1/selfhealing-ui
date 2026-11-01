@@ -34,11 +34,11 @@ jobs:
       run: |
         pytest tests/unit -v
 
-    - name: Run Benchmark & Evaluation
+    - name: Run Benchmark & Evaluation (57 Scenarios)
       run: |
         python tests/evaluation/benchmark.py
 
-    - name: Run End-to-End Healing Scenarios
+    - name: Run End-to-End Healing Scenarios & Lifecycle Validation
       run: |
         pytest tests/healing -v
 
@@ -46,8 +46,11 @@ jobs:
       run: |
         python -m selfheal.cli report --format all
 
-    - name: Upload Test Reports Artifacts
+    - name: Upload Test Reports & Benchmark Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: selfheal-reports
-        path: artifacts/reports/
+        name: selfheal-artifacts
+        path: |
+          artifacts/reports/
+          artifacts/selfheal.db
+

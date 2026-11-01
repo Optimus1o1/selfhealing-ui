@@ -108,3 +108,4 @@ class ElementFingerprint(BaseModel):
             original_selector=row.get("original_selector") or "",
             screenshot_path=row.get("screenshot_path"),
         )
+

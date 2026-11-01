@@ -129,3 +129,4 @@ class FailureClassifier:
             reason="Element exists and appears actionable; failure may be transient or event-driven.",
             element_count=count
         )
+

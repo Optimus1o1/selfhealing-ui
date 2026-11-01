@@ -22,3 +22,4 @@ def demo_server() -> DemoServer:
     server.start()
     yield server
     server.stop()
+

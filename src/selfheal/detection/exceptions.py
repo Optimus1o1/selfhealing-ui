@@ -21,3 +21,4 @@ class HealingConfidenceError(SelfHealException):
 class HealingExecutionError(SelfHealException):
     """Raised when retrying the healed locator fails."""
     pass
+

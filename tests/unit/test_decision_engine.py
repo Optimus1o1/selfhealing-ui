@@ -86,3 +86,4 @@ def test_decision_approves_strong_match():
     decision = engine.evaluate("auth.btn", "#loginBtn", scored)
     assert decision.decision == DecisionStatus.APPROVED
     assert decision.healed_locator in ('[data-testid="auth-submit"]', '#signinBtn')
+

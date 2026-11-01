@@ -69,3 +69,4 @@ class SimilarityScorer:
         scored = [self.score_candidate(base, c) for c in candidates]
         scored.sort(key=lambda sc: sc.total_score, reverse=True)
         return scored
+

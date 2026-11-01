@@ -44,3 +44,4 @@ class DatabaseManager:
 
         with self.session() as conn:
             conn.executescript(ddl)
+

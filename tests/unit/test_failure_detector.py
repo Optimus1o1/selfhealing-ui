@@ -74,3 +74,4 @@ def test_classify_disabled_element():
     classification = classifier.classify_failure(page_mock, "#disabledBtn")
     assert classification.failure_type == FailureType.ELEMENT_DISABLED
     assert not classification.is_healable
+

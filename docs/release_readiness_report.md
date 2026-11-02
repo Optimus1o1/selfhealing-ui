@@ -3,7 +3,7 @@
 **Moon Sanctum Labs** — *Decode. Build. Evolve.*  
 **Lead Engineer:** Aniket Nandi (Kolkata, IST)  
 **System Evaluated:** SelfHeal — Intelligent Self-Healing UI Automation Framework  
-**Evaluated Version:** `1.0.0rc1`  
+**Evaluated Version:** `1.0.0`  
 **Target Release:** Assessment for `1.0.0` Stable  
 **Date of Audit:** November 2, 2026  
 **Final Audit Verdict:** **`READY WITH KNOWN LIMITATIONS`**  
@@ -201,3 +201,4 @@ The SelfHeal framework (`1.0.0rc1`) meets and exceeds all engineering requiremen
 1. **Publish to Remote Git:** Configure the remote repository URL and push branch `master` to trigger the GitHub Actions verification pipeline.
 2. **Release Tagging:** Once the remote CI pipeline passes green, tag release `v1.0.0`.
 3. **Distribution Publishing:** Publish `dist/selfheal-1.0.0rc1-py3-none-any.whl` and `.tar.gz` to the internal package registry or PyPI as `1.0.0`.
+

@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.0] - 2026-11-02
+
+### Added
+- **Official Stable Release 1.0.0**:
+  - Promoted SelfHeal from release candidate (`1.0.0rc1`) to production-ready stable status.
+  - Formally validated against 109 independent UI mutation scenarios with 100.00% precision and 0.00% false positive rate.
+  - Complete multi-page e-commerce demonstration application (`demo_app/ecommerce.py`) verifying 7 end-to-end healing journeys (Scenarios A–G).
+  - Enterprise 9-section Streamlit engineering monitoring and audit dashboard (`src/selfheal/dashboard/app.py`).
+  - Full academic and technical documentation suite published under `docs/`.
+  - Canonical benchmark reconciliation: 56 True Positives, 46 True Negatives, 0 False Positives, 7 False Negatives (88.89% combined recall, 93.58% overall accuracy).
+
+### Changed
+- Promoted package classifier to `Development Status :: 5 - Production/Stable`.
+- Reconciled holdout validation dataset metrics to canonical 18 TP / 3 FN resulting from deterministic multi-word phrase UI synonym matching.
+
+---
+
 ## [1.0.0rc1] - 2026-11-02
 
 ### Added

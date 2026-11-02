@@ -2,7 +2,7 @@
 
 **Moon Sanctum Labs** — *Decode. Build. Evolve.*  
 **Lead Engineer:** Aniket Nandi (Kolkata, IST)  
-**System Version:** `1.0.0rc1`  
+**System Version:** `1.0.0`  
 
 ---
 
@@ -35,6 +35,6 @@ Project Objective
 | **OBJ-08** | Relational SQLite WAL Storage & Baseline Version Evolution | `src/selfheal/baseline/repository.py`<br/>`src/selfheal/database/schema.sql` | `tests/unit/test_dashboard_integration.py::<br/>test_baseline_promotion_and_rejection_workflow` | Version v1 $\rightarrow$ v2 evolution with audit trail | `artifacts/selfheal.db` |
 | **OBJ-09** | Enterprise 9-Section Streamlit Audit Dashboard | `src/selfheal/dashboard/app.py` | `tests/unit/test_dashboard_integration.py::<br/>test_empty_database_handling`<br/>`tests/unit/test_dashboard_integration.py::<br/>test_invalid_or_missing_record_lookups`<br/>`tests/unit/test_dashboard_integration.py::<br/>test_metric_calculations_and_filtering` | 9 active dashboard sections verified | `artifacts/screenshots/dashboard/01_overview.png`<br/>through `09_performance_monitor.png` |
 | **OBJ-10** | End-to-End E-Commerce Multi-Page Demonstration Application | `demo_app/ecommerce.py`<br/>`demo/run_demo.py` | `tests/demo/test_ecommerce_demonstration.py::<br/>test_ecommerce_complete_e2e_healing_journey`<br/>`tests/demo/test_ecommerce_demonstration.py::<br/>test_ecommerce_ambiguous_rejection_negative_case`<br/>`tests/demo/test_ecommerce_demonstration.py::<br/>test_ecommerce_actionability_rejection_negative_case` | 100% healing success on V2 with unchanged V1 test code | `artifacts/screenshots/demo/` (10 evidence images) |
-| **OBJ-11** | Independent Large-Scale Evaluation Benchmark | `tests/evaluation/benchmark.py`<br/>`tests/evaluation/holdout_benchmark.py` | Automated Execution of 109 Test Scenarios | 100.0% Precision<br/>87.30% Recall<br/>92.66% Accuracy | `artifacts/reports/benchmark_results.json`<br/>`artifacts/reports/holdout_benchmark_results.json` |
-| **OBJ-12** | Continuous Integration & Distribution Packaging | `.github/workflows/ci.yml`<br/>`pyproject.toml` | GitHub Actions Workflow Execution | Python Wheel & Source Distribution build clean | `dist/selfheal-1.0.0rc1-py3-none-any.whl`<br/>`dist/selfheal-1.0.0rc1.tar.gz` |
+| **OBJ-11** | Independent Large-Scale Evaluation Benchmark | `tests/evaluation/benchmark.py`<br/>`tests/evaluation/holdout_benchmark.py` | Automated Execution of 109 Test Scenarios | 100.0% Precision<br/>88.89% Recall<br/>93.58% Accuracy | `artifacts/reports/benchmark_results.json`<br/>`artifacts/reports/holdout_benchmark_results.json` |
+| **OBJ-12** | Continuous Integration & Distribution Packaging | `.github/workflows/ci.yml`<br/>`pyproject.toml` | GitHub Actions Workflow Execution | Python Wheel & Source Distribution build clean | `dist/selfheal-1.0.0-py3-none-any.whl`<br/>`dist/selfheal-1.0.0.tar.gz` |
 

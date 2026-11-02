@@ -8,6 +8,6 @@ from selfheal.engine.page import SelfHealingPage
 from selfheal.engine.locator import SelfHealingLocator
 from selfheal.config import SelfHealConfig
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 __all__ = ["SelfHealingPage", "SelfHealingLocator", "SelfHealConfig"]
 

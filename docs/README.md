@@ -2,7 +2,7 @@
 
 **Moon Sanctum Labs** — *Decode. Build. Evolve.*  
 **Lead Engineer:** Aniket Nandi (Kolkata, IST)  
-**System Version:** `1.0.0rc1`  
+**System Version:** `1.0.0`  
 **License:** MIT License  
 
 Welcome to the comprehensive technical documentation and academic research archive for the **SelfHeal — Intelligent Self-Healing UI Automation Framework for Microsoft Playwright**.
@@ -18,11 +18,12 @@ Welcome to the comprehensive technical documentation and academic research archi
 | **[3. Mathematical Formulation](mathematical_formulation.md)** | Similarity Engine & Vector Space Foundations | RapidFuzz formulas (Levenshtein, Jaro-Winkler, Token Sort), UI Synonyms, ARIA blending, Jaccard attributes, Parent/Child/Spatial proximity, worked example (Scenario B), calibration critique. |
 | **[4. SQLite Database Schema & Architecture](database_schema.md)** | Embedded WAL Persistence & Versioning | Schema DDL (`schema.sql`), 5 tables, foreign key cascades, baseline lifecycle state machine (v1 $\rightarrow$ v2), concurrency isolation, privacy redaction. |
 | **[5. Module Reference & API Specification](module_reference.md)** | Complete Source Code Technical Reference | Specifications for all 12 modules across Engine, Detection, Scanner, Intelligence, Persistence, Dashboard, Reporting, and CLI. |
-| **[6. Experimental Evaluation & Profiling](experimental_evaluation.md)** | 109 Scenarios & 500+ Iterations Telemetry | Confusion matrices (Dataset 1, Holdout 2, Combined), 100% Precision, 0% FPR, 87.30% Recall, multi-tier latency percentiles, timeout dominance breakdown. |
+| **[6. Experimental Evaluation & Profiling](experimental_evaluation.md)** | 109 Scenarios & 500+ Iterations Telemetry | Confusion matrices (Dataset 1, Holdout 2, Combined), 100% Precision, 0% FPR, 88.89% Recall, multi-tier latency percentiles, timeout dominance breakdown. |
 | **[7. Requirements Traceability Matrix](traceability_matrix.md)** | Master Verification Matrix | Full mapping: Project Objective $\rightarrow$ Requirement $\rightarrow$ Module $\rightarrow$ Test Case $\rightarrow$ Metric $\rightarrow$ Evidence Artifact. |
 | **[8. Technical Viva Defense Guide](viva_preparation.md)** | 30 Viva Questions & Detailed Answers | 20 foundational questions on Playwright, DOM, RapidFuzz, ARIA, and WAL + 10 challenging trade-off questions addressing architectural alternatives and limitations. |
 | **[9. Demonstration Presentation Script](demo_presentation_script.md)** | 5–7 Minute Defense Presentation Script | Timed cues, talking points, live terminal commands, browser actions, and dashboard walkthrough guide. |
 | **[10. Release Readiness Report](release_readiness_report.md)** | Engineering Reliability Audit & Release Verdict | Final release audit, test verification, security & privacy analysis, packaging checks, release blockers, and readiness recommendation. |
+| **[11. Release Notes (v1.0.0)](release_1.0.0.md)** | Official Stable 1.0.0 Release Notes | Product overview, capabilities, canonical benchmarks, installation, quickstart, and known platform limitations. |
 
 ---
 
@@ -67,8 +68,8 @@ flowchart TD
 |---|---|---|
 | **Healing Precision** | **100.00%** (0 false positive interactions) | 109 Scenarios (`benchmark.py` & `holdout_benchmark.py`) |
 | **False Positive Rate** | **0.00%** | 109 Scenarios |
-| **Healing Recall** | **87.30%** (55/63 eligible repairs) | 109 Scenarios |
-| **Overall Accuracy** | **92.66%** (101/109 scenarios) | 109 Scenarios |
+| **Healing Recall** | **88.89%** (56/63 eligible repairs) | 109 Scenarios |
+| **Overall Accuracy** | **93.58%** (102/109 scenarios) | 109 Scenarios |
 | **Automated Unit Tests** | **30 / 30 Passing** (100%) | `pytest tests/ -v` |
 | **Pure Algorithm Scoring** | **0.690 ms** (P50: 0.608 ms, P95: 1.127 ms) | 500+ Iterations (`profile_performance.py`) |
 | **Decision Engine Gating** | **0.005 ms** (P50: 0.004 ms) | 500+ Iterations |

@@ -3,7 +3,7 @@
 **Academic Project & Technical Research Report**  
 **Author:** Aniket Nandi (Lead Full-Stack Developer & Designer)  
 **Organization:** Moon Sanctum Labs — *Decode. Build. Evolve.* (Kolkata, IST)  
-**System Version:** `1.0.0rc1`  
+**System Version:** `1.0.0`  
 **Date:** November 2026  
 
 ---
@@ -14,7 +14,7 @@ Automated end-to-end (E2E) web testing is an indispensable component of modern s
 
 This report presents **SelfHeal**, a deterministic, production-grade self-healing test automation framework for Microsoft Playwright in Python. SelfHeal eliminates locator brittleness by projecting candidate DOM elements into a 6-dimensional metric space spanning visible text and accessible names, semantic HTML tags and ARIA roles, attribute evolutionary Jaccard overlap, parent hierarchy containers, child substructure distributions, and normalized spatial bounding box geometry. Candidate selection is constrained by a conservative dual-gating policy requiring a minimum confidence threshold ($S_1 \ge 0.80$) and a minimum runner-up margin ($\Delta \ge 0.10$), followed by strict candidate uniqueness verification and single-retry safety.
 
-Across an empirical evaluation of **109 independent UI mutation scenarios** (combining a 57-case baseline suite and a 52-case unseen holdout suite), SelfHeal achieved **100.00% Precision**, **0.00% False Positive Rate**, **87.30% Recall**, and **92.66% Overall Accuracy**. Multi-tier performance profiling across 500+ live browser iterations demonstrated that pure similarity scoring requires only **0.69 milliseconds**, and in-browser DOM extraction completes in **2.30 milliseconds**, proving that deterministic heuristics can recover broken tests locally with sub-millisecond computation overhead and zero false positive interactions.
+Across an empirical evaluation of **109 independent UI mutation scenarios** (combining a 57-case baseline suite and a 52-case unseen holdout suite), SelfHeal achieved **100.00% Precision**, **0.00% False Positive Rate**, **88.89% Recall**, and **93.58% Overall Accuracy**. Multi-tier performance profiling across 500+ live browser iterations demonstrated that pure similarity scoring requires only **0.796 milliseconds** (median $0.647$ ms), and in-browser DOM extraction completes in **2.27 milliseconds**, proving that deterministic heuristics can recover broken tests locally with sub-millisecond computation overhead and zero false positive interactions.
 
 **Keywords:** Test Automation, Self-Healing Locators, Web Testing, Playwright, Deterministic Heuristics, String Similarity, ARIA Accessibility, SQLite WAL, Software Quality Assurance.
 
@@ -158,14 +158,14 @@ The framework was evaluated across 109 independent mutation scenarios:
 
 | Metric | Dataset 1 (57 cases) | Dataset 2 (52 holdout) | **Combined (109 Scenarios)** |
 |---|---|---|---|
-| **True Positives (TP)** | 38 | 17 | **55** |
+| **True Positives (TP)** | 38 | 18 | **56** |
 | **True Negatives (TN)** | 15 | 31 | **46** |
 | **False Positives (FP)** | 0 | 0 | **0 (0.00%)** |
-| **False Negatives (FN)** | 4 | 4 | **8** |
+| **False Negatives (FN)** | 4 | 3 | **7** |
 | **Precision** | **100.00%** | **100.00%** | **100.00%** |
-| **Recall** | **90.48%** | **80.95%** | **87.30%** |
+| **Recall** | **90.48%** | **85.71%** | **88.89%** |
 | **False Positive Rate** | **0.00%** | **0.00%** | **0.00%** |
-| **Overall Accuracy** | **92.98%** | **92.31%** | **92.66%** |
+| **Overall Accuracy** | **92.98%** | **94.23%** | **93.58%** |
 
 ### 7.2 Multi-Tier Latency Telemetry (500+ Iterations)
 Performance profiling on live Chromium revealed:

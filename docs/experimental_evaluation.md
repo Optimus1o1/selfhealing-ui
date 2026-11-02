@@ -2,7 +2,7 @@
 
 **Moon Sanctum Labs** — *Decode. Build. Evolve.*  
 **Lead Engineer:** Aniket Nandi (Kolkata, IST)  
-**System Version:** `1.0.0rc1`  
+**System Version:** `1.0.0`  
 **Evaluation Scope:** 109 Independent Scenarios & 500+ Iteration Live Profiling  
 **Data Sources:**  
 - `artifacts/reports/benchmark_results.json`  
@@ -56,53 +56,54 @@ The baseline suite tested standard mutation categories including renamed IDs, ch
 ### 2.2 Dataset 2: Independent Holdout Validation Suite (52 Scenarios)
 The holdout suite tested unseen, adversarially designed mutation cases:
 - Complex nested forms and deep flexbox/grid containers.
-- Duplicate accessible names and multi-button catalog grids.
+- Dynamic React-style components (styled-components hashes, Tailwind arbitrary classes).
+- Repeated accessible names and multi-button catalog grids.
 - Asynchronous dynamic SPA rendering and hydration delays.
 - Multiple candidate collisions with near-identical attributes.
 - Intentionally disabled and hidden controls.
 
 - **Total Scenarios:** 52
-- **True Positives (TP):** 17
+- **True Positives (TP):** 18
 - **True Negatives (TN):** 31
 - **False Positives (FP):** 0
-- **False Negatives (FN):** 4
+- **False Negatives (FN):** 3
 - **Healing Precision:** **100.00%**
-- **Healing Recall:** **80.95%** ($17 / 21$)
+- **Healing Recall:** **85.71%** ($18 / 21$)
 - **False Positive Rate:** **0.00%**
-- **Overall Accuracy:** **92.31%** ($48 / 52$)
-- **F1 Score:** **89.47%**
-- **Abstention Rate:** **67.31%** ($35 / 52$)
+- **Overall Accuracy:** **94.23%** ($49 / 52$)
+- **F1 Score:** **92.31%**
+- **Abstention Rate:** **65.38%** ($34 / 52$)
 
 #### Dataset 2 Confusion Matrix:
 | | Actual Healable (Positive) | Actual Unhealable (Negative) |
 |---|---|---|
-| **Predicted Healed** | **TP = 17** | **FP = 0** |
-| **Predicted Rejected**| **FN = 4** | **TN = 31** |
+| **Predicted Healed** | **TP = 18** | **FP = 0** |
+| **Predicted Rejected**| **FN = 3** | **TN = 31** |
 
 ---
 
 ### 2.3 Combined Evaluation Benchmark (109 Scenarios)
 
-Aggregating both independent datasets yields a combined empirical evaluation:
+Aggregating both independent datasets yields the canonical empirical evaluation:
 
 | Metric | Dataset 1 (57) | Dataset 2 (52) | **Combined (109 Scenarios)** |
 |---|---|---|---|
 | **Total Test Scenarios** | 57 | 52 | **109** |
-| **True Positives (TP)** | 38 | 17 | **55** |
+| **True Positives (TP)** | 38 | 18 | **56** |
 | **True Negatives (TN)** | 15 | 31 | **46** |
 | **False Positives (FP)** | 0 | 0 | **0 (0.00%)** |
-| **False Negatives (FN)** | 4 | 4 | **8** |
+| **False Negatives (FN)** | 4 | 3 | **7** |
 | **Healing Precision** | **100.00%** | **100.00%** | **100.00%** |
-| **Healing Recall** | 90.48% | 80.95% | **87.30%** ($55 / 63$) |
+| **Healing Recall** | 90.48% | 85.71% | **88.89%** ($56 / 63$) |
 | **False Positive Rate** | **0.00%** | **0.00%** | **0.00%** |
-| **Overall Accuracy** | 92.98% | 92.31% | **92.66%** ($101 / 109$) |
-| **F1 Score** | 95.00% | 89.47% | **93.22%** |
+| **Overall Accuracy** | 92.98% | 94.23% | **93.58%** ($102 / 109$) |
+| **F1 Score** | 95.00% | 92.31% | **94.12%** |
 
 #### Combined Confusion Matrix:
 | | Actual Healable (63) | Actual Unhealable (46) | Total |
 |---|---|---|---|
-| **Predicted Healed (55)** | **55 (TP)** | **0 (FP)** | 55 |
-| **Predicted Rejected (54)**| **8 (FN)** | **46 (TN)** | 54 |
+| **Predicted Healed (56)** | **56 (TP)** | **0 (FP)** | 56 |
+| **Predicted Rejected (53)**| **7 (FN)** | **46 (TN)** | 53 |
 | **Total** | 63 | 46 | **109** |
 
 ---

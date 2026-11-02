@@ -1,6 +1,6 @@
 # Self-Healing UI Automation Framework
 
-**Version:** 1.0.0rc1  
+**Version:** 1.0.0  
 **Moon Sanctum Labs** — *Decode. Build. Evolve.*  
 **Lead Engineer:** Aniket Nandi (Kolkata, IST)
 
@@ -86,22 +86,24 @@ The framework has been evaluated across **109 independent UI mutation scenarios*
 ### 2. Independent Holdout Validation Dataset (52 Unseen Scenarios)
 - **Scenarios Evaluated**: 52
 - **Healing Precision**: **100.00%** (0 false positive interactions dispatched)
-- **Healing Recall**: **80.95%** (17/21 eligible modifications repaired)
+- **Healing Recall**: **85.71%** (18/21 eligible modifications repaired)
 - **False Positive Rate (FPR)**: **0.00%**
-- **Overall Accuracy**: **92.31%**
-- **F1 Score**: **89.47%**
-- **Abstention Rate**: **67.31%**
+- **Overall Accuracy**: **94.23%** (49/52)
+- **F1 Score**: **92.31%**
+- **Abstention Rate**: **65.38%**
 
 ### 3. Combined Benchmark Totals
 | Metric | Baseline Suite (57) | Holdout Suite (52) | **Combined (109 Scenarios)** |
 |---|---|---|---|
-| **True Positives (TP)** | 38 | 17 | **55** |
+| **True Positives (TP)** | 38 | 18 | **56** |
 | **True Negatives (TN)** | 15 | 31 | **46** |
 | **False Positives (FP)** | 0 | 0 | **0 (0.00%)** |
-| **False Negatives (FN)** | 4 | 4 | **8** |
+| **False Negatives (FN)** | 4 | 3 | **7** |
 | **Healing Precision** | 100.00% | 100.00% | **100.00%** |
 | **False Positive Rate** | 0.00% | 0.00% | **0.00%** |
-| **Overall Accuracy** | 92.98% | 92.31% | **92.66%** |
+| **Healing Recall** | 90.48% | 85.71% | **88.89%** |
+| **Overall Accuracy** | 92.98% | 94.23% | **93.58%** |
+| **F1 Score** | 95.00% | 92.31% | **94.12%** |
 
 ---
 

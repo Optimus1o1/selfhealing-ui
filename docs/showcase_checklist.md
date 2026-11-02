@@ -45,11 +45,9 @@
 - [ ] **Remote Creation:** Empty public repository `selfhealing-ui` created under GitHub account `Optimus1o1`.
 - [ ] **Remote Origin Added:** `git remote add origin https://github.com/Optimus1o1/selfhealing-ui.git` executed.
 - [ ] **Initial Push:** `git push -u origin master` completed successfully.
-- [ ] **Remote CI Matrix (GitHub Actions):** All 6 matrix jobs passing green:
-  - [ ] Ubuntu / Python 3.10
+- [ ] **Remote CI Matrix (GitHub Actions):** All 4 matrix jobs passing green:
   - [ ] Ubuntu / Python 3.11
   - [ ] Ubuntu / Python 3.12
-  - [ ] Windows / Python 3.10
   - [ ] Windows / Python 3.11
   - [ ] Windows / Python 3.12
 - [ ] **Release Tag:** Annotated tag `v1.0.0` pushed to GitHub (`git tag -a v1.0.0`, `git push origin v1.0.0`).
@@ -83,3 +81,4 @@
 - [ ] **LinkedIn Post:** Published using copy from `docs/linkedin_launch.md`.
 - [ ] **Demo Video / Carousel Attached:** Demonstration video or 5-slide PDF carousel attached to post.
 - [ ] **Hashtags & Community:** Shared in relevant testing and DevOps communities.
+

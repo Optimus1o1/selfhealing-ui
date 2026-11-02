@@ -164,3 +164,4 @@
 - [ ] Ensure audio level remains consistently balanced between $-14\text{ LUFS}$ and $-16\text{ LUFS}$.
 - [ ] Render video as MP4 (H.264 / AAC) at high bitrate ($12\text{–}16\text{ Mbps}$).
 - [ ] Export thumbnail using `docs/assets/dashboard/01_overview.png` with brand overlay.
+

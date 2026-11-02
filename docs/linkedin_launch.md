@@ -115,3 +115,4 @@ Full project and case study on GitHub:
 
 ## 🏷️ Technical Hashtags
 `#SoftwareEngineering` `#TestAutomation` `#Playwright` `#Python` `#QualityEngineering` `#DevOps` `#ContinuousDelivery` `#OpenSource` `#SoftwareArchitecture` `#RapidFuzz`
+

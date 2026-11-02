@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Tests Passing](https://img.shields.io/badge/tests-30%2F30%20passed-brightgreen.svg)](tests/)
 [![Precision](https://img.shields.io/badge/precision-100.00%25-success.svg)](docs/experimental_evaluation.md)
@@ -266,7 +266,7 @@ python scripts/run_academic_demo.py --headed
 ## 📦 Installation & Quickstart
 
 ### Prerequisites
-- Python 3.10, 3.11, or 3.12
+- Python 3.11 or 3.12
 - Microsoft Playwright
 
 ### Installation

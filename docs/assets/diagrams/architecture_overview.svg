@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #0F1013; }
+      .layer-bg { fill: #18191E; stroke: #2E3138; stroke-width: 1.5; rx: 8px; }
+      .box { fill: #22242B; stroke: #3A3D46; stroke-width: 1.5; rx: 6px; }
+      .box-accent { fill: #26211C; stroke: #E0A45C; stroke-width: 2; rx: 6px; }
+      .box-highlight { fill: #1B2922; stroke: #4EBA86; stroke-width: 1.5; rx: 6px; }
+      .title { font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 700; fill: #F2EFE8; font-size: 20px; }
+      .layer-title { font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 600; fill: #E0A45C; font-size: 14px; letter-spacing: 1px; }
+      .box-title { font-family: 'Manrope', -apple-system, sans-serif; font-weight: 600; fill: #F2EFE8; font-size: 13px; }
+      .box-desc { font-family: 'Manrope', -apple-system, sans-serif; font-weight: 400; fill: #8B9099; font-size: 11px; }
+      .badge { font-family: 'Space Grotesk', monospace; font-size: 10px; font-weight: 600; fill: #E0A45C; }
+      .arrow { stroke: #E0A45C; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+      .arrow-dim { stroke: #8B9099; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; marker-end: url(#arrowhead-dim); }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E0A45C" />
+    </marker>
+    <marker id="arrowhead-dim" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8B9099" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="620" class="bg" rx="12" />
+
+  <!-- Header -->
+  <text x="40" y="45" class="title">SelfHeal — Deterministic System Architecture</text>
+  <text x="800" y="45" class="badge">MOON SANCTUM LABS · v1.0.0</text>
+  <line x1="40" y1="62" x2="960" y2="62" stroke="#2E3138" stroke-width="1" />
+
+  <!-- Tier 1: Test Execution Layer -->
+  <rect x="40" y="80" width="210" height="500" class="layer-bg" />
+  <text x="60" y="110" class="layer-title">1. TEST EXECUTION</text>
+
+  <rect x="55" y="130" width="180" height="90" class="box" />
+  <text x="70" y="158" class="box-title">Playwright Test Suite</text>
+  <text x="70" y="180" class="box-desc">pytest &amp; standard tests</text>
+  <text x="70" y="200" class="box-desc">Zero manual rewrites</text>
+
+  <rect x="55" y="250" width="180" height="110" class="box-accent" />
+  <text x="70" y="280" class="box-title">SelfHealingPage</text>
+  <text x="70" y="302" class="box-desc">Zero-monkeypatch wrapper</text>
+  <text x="70" y="322" class="box-desc">SelfHealingLocator proxy</text>
+  <text x="70" y="342" class="box-desc">Target key inference</text>
+
+  <rect x="55" y="390" width="180" height="80" class="box" />
+  <text x="70" y="420" class="box-title">Locator Chaining</text>
+  <text x="70" y="442" class="box-desc">.first / .last / .nth()</text>
+  <text x="70" y="458" class="box-desc">Preserves stable keys</text>
+
+  <!-- Tier 2: Detection & Extraction -->
+  <rect x="270" y="80" width="220" height="500" class="layer-bg" />
+  <text x="290" y="110" class="layer-title">2. DETECTION &amp; TRIAGE</text>
+
+  <rect x="285" y="130" width="190" height="110" class="box" />
+  <text x="300" y="158" class="box-title">Failure Classifier</text>
+  <text x="300" y="180" class="box-desc">Actionability diagnosis</text>
+  <text x="300" y="200" class="box-desc">Intercepts hidden/disabled</text>
+  <text x="300" y="220" class="box-desc">Prevents false healing</text>
+
+  <rect x="285" y="270" width="190" height="110" class="box" />
+  <text x="300" y="298" class="box-title">In-Browser DOM Scanner</text>
+  <text x="300" y="320" class="box-desc">Evaluates live DOM snapshot</text>
+  <text x="300" y="340" class="box-desc">Extracts 10 DOM dimensions</text>
+  <text x="300" y="360" class="box-desc">Zero DOM corruption</text>
+
+  <rect x="285" y="410" width="190" height="80" class="box-highlight" />
+  <text x="300" y="438" class="box-title">Baseline Capture</text>
+  <text x="300" y="460" class="box-desc">Snapshots valid elements</text>
+  <text x="300" y="478" class="box-desc">Redacts sensitive fields</text>
+
+  <!-- Tier 3: Intelligence & Gating -->
+  <rect x="510" y="80" width="220" height="500" class="layer-bg" />
+  <text x="530" y="110" class="layer-title">3. DETERMINISTIC ENGINE</text>
+
+  <rect x="525" y="130" width="190" height="110" class="box-accent" />
+  <text x="540" y="158" class="box-title">Weighted Similarity Engine</text>
+  <text x="540" y="180" class="box-desc">RapidFuzz string scoring</text>
+  <text x="540" y="200" class="box-desc">UI synonym ontology</text>
+  <text x="540" y="220" class="box-desc">Role/Tag/Jaccard overlap</text>
+
+  <rect x="525" y="270" width="190" height="120" class="box-accent" />
+  <text x="540" y="298" class="box-title">Healing Decision Gating</text>
+  <text x="540" y="320" class="box-desc">Score Threshold: S &#8805; 0.80</text>
+  <text x="540" y="340" class="box-desc">Ambiguity Margin: &#916; &#8805; 0.10</text>
+  <text x="540" y="360" class="box-desc">Strict uniqueness: count == 1</text>
+  <text x="540" y="378" class="box-desc">Single safe retry limit</text>
+
+  <rect x="525" y="420" width="190" height="70" class="box" />
+  <text x="540" y="448" class="box-title">Selector Synthesizer</text>
+  <text x="540" y="470" class="box-desc">Resilient CSS &amp; text locators</text>
+
+  <!-- Tier 4: Execution & Governance -->
+  <rect x="750" y="80" width="210" height="500" class="layer-bg" />
+  <text x="770" y="110" class="layer-title">4. AUDIT &amp; GOVERNANCE</text>
+
+  <rect x="765" y="130" width="180" height="100" class="box" />
+  <text x="780" y="158" class="box-title">SQLite WAL Repository</text>
+  <text x="780" y="180" class="box-desc">Versioned baselines</text>
+  <text x="780" y="200" class="box-desc">Complete audit trail</text>
+  <text x="780" y="218" class="box-desc">Pending review queue</text>
+
+  <rect x="765" y="260" width="180" height="110" class="box-highlight" />
+  <text x="780" y="288" class="box-title">Streamlit Dashboard</text>
+  <text x="780" y="310" class="box-desc">9 Engineering sections</text>
+  <text x="780" y="330" class="box-desc">Score breakdown radar</text>
+  <text x="780" y="350" class="box-desc">One-click V2 promotion</text>
+
+  <rect x="765" y="400" width="180" height="80" class="box" />
+  <text x="780" y="428" class="box-title">Report Generator</text>
+  <text x="780" y="450" class="box-desc">HTML / JSON audit records</text>
+  <text x="780" y="468" class="box-desc">CI/CD execution artifacts</text>
+
+  <!-- Flow Arrows -->
+  <path d="M 235 180 L 285 180" class="arrow" />
+  <path d="M 235 320 L 285 320" class="arrow" />
+  <path d="M 475 320 L 525 200" class="arrow" />
+  <path d="M 620 240 L 620 270" class="arrow" />
+  <path d="M 715 320 L 765 320" class="arrow" />
+  <path d="M 855 230 L 855 260" class="arrow" />
+  <path d="M 620 390 L 620 420" class="arrow" />
+  <path d="M 715 450 L 765 450" class="arrow" />
+</svg>
+

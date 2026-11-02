@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #0F1013; }
+      .bar-bg { fill: #1C1E24; rx: 4px; }
+      .bar-fill { fill: #E0A45C; rx: 4px; }
+      .bar-fill-secondary { fill: #4EBA86; rx: 4px; }
+      .title { font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 700; fill: #F2EFE8; font-size: 20px; }
+      .badge { font-family: 'Space Grotesk', monospace; font-size: 11px; font-weight: 600; fill: #E0A45C; letter-spacing: 1px; }
+      .dim-name { font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 600; fill: #F2EFE8; font-size: 14px; }
+      .dim-desc { font-family: 'Manrope', -apple-system, sans-serif; font-weight: 400; fill: #8B9099; font-size: 12px; }
+      .dim-pct { font-family: 'Space Grotesk', monospace; font-weight: 700; fill: #E0A45C; font-size: 14px; text-anchor: end; }
+    </style>
+  </defs>
+
+  <rect width="900" height="480" class="bg" rx="12" />
+
+  <!-- Header -->
+  <text x="40" y="45" class="title">Multi-Dimensional Similarity Engine Weights</text>
+  <text x="680" y="45" class="badge">TOTAL WEIGHT = 1.00 (100%)</text>
+  <line x1="40" y1="62" x2="860" y2="62" stroke="#2E3138" stroke-width="1" />
+
+  <!-- Dimension 1: Text & Accessible Name (30%) -->
+  <text x="40" y="98" class="dim-name">1. Text &amp; Accessible Name</text>
+  <text x="40" y="116" class="dim-desc">RapidFuzz token-sort, Levenshtein, UI action synonym cluster matching</text>
+  <rect x="520" y="90" width="280" height="22" class="bar-bg" />
+  <rect x="520" y="90" width="168" height="22" class="bar-fill" />
+  <text x="850" y="106" class="dim-pct">30% (0.30)</text>
+
+  <!-- Dimension 2: Type & ARIA Role (20%) -->
+  <text x="40" y="158" class="dim-name">2. Element Type &amp; ARIA Role</text>
+  <text x="40" y="176" class="dim-desc">Exact tag match, interactive role compatibility (button, link, input)</text>
+  <rect x="520" y="150" width="280" height="22" class="bar-bg" />
+  <rect x="520" y="150" width="112" height="22" class="bar-fill" />
+  <text x="850" y="166" class="dim-pct">20% (0.20)</text>
+
+  <!-- Dimension 3: Attributes (20%) -->
+  <text x="40" y="218" class="dim-name">3. Attribute Evolution</text>
+  <text x="40" y="236" class="dim-desc">data-testid, name, placeholder, type, and title Jaccard token overlap</text>
+  <rect x="520" y="210" width="280" height="22" class="bar-bg" />
+  <rect x="520" y="210" width="112" height="22" class="bar-fill" />
+  <text x="850" y="226" class="dim-pct">20% (0.20)</text>
+
+  <!-- Dimension 4: Parent Context (15%) -->
+  <text x="40" y="278" class="dim-name">4. Parent Hierarchy &amp; Container Context</text>
+  <text x="40" y="296" class="dim-desc">Form affinity, enclosing section/card ID, parent CSS container similarity</text>
+  <rect x="520" y="270" width="280" height="22" class="bar-bg" />
+  <rect x="520" y="270" width="84" height="22" class="bar-fill" />
+  <text x="850" y="286" class="dim-pct">15% (0.15)</text>
+
+  <!-- Dimension 5: Children Structure (10%) -->
+  <text x="40" y="338" class="dim-name">5. Children Subtree Structure</text>
+  <text x="40" y="356" class="dim-desc">Nested icon tags, SVG badges, child spans, and inner layout nodes</text>
+  <rect x="520" y="330" width="280" height="22" class="bar-bg" />
+  <rect x="520" y="330" width="56" height="22" class="bar-fill" />
+  <text x="850" y="346" class="dim-pct">10% (0.10)</text>
+
+  <!-- Dimension 6: Spatial Position (5%) -->
+  <text x="40" y="398" class="dim-name">6. Spatial Geometry &amp; Screen Position</text>
+  <text x="40" y="416" class="dim-desc">Normalized viewport bounding box Euclidean distance (viewport invariance)</text>
+  <rect x="520" y="390" width="280" height="22" class="bar-bg" />
+  <rect x="520" y="390" width="28" height="22" class="bar-fill" />
+  <text x="850" y="406" class="dim-pct">5% (0.05)</text>
+
+  <!-- Threshold Callout -->
+  <line x1="40" y1="440" x2="860" y2="440" stroke="#2E3138" stroke-width="1" />
+  <text x="40" y="464" class="dim-desc">Safety Gates: Decision Threshold <tspan fill="#4EBA86" font-weight="700">S &#8805; 0.80</tspan> · Ambiguity Margin <tspan fill="#E0A45C" font-weight="700">&#916; &#8805; 0.10</tspan> · Uniqueness Verification <tspan fill="#F2EFE8" font-weight="700">count == 1</tspan></text>
+</svg>
+

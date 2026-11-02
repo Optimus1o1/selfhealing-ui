@@ -7,17 +7,23 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+  test:
+    name: Test (${{ matrix.os }} - Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
 
-    - name: Set up Python 3.12
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
-        python-version: "3.12"
+        python-version: ${{ matrix.python-version }}
         cache: 'pip'
 
     - name: Install dependencies & build tools
@@ -29,13 +35,18 @@ jobs:
     - name: Build Package Distribution (Wheel & Sdist)
       run: |
         python -m build
-        ls -la dist/
 
-    - name: Install Playwright Browsers
+    - name: Install Playwright Browsers (Linux)
+      if: runner.os == 'Linux'
       run: |
-        playwright install chromium --with-deps
+        playwright install --with-deps chromium
 
-    - name: Run Test Suite (23 Unit and Healing Tests)
+    - name: Install Playwright Browsers (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        playwright install chromium
+
+    - name: Run Test Suite (30 Unit and Healing Tests)
       run: |
         python -m pytest tests/ -v
 
@@ -47,19 +58,16 @@ jobs:
       run: |
         python tests/evaluation/holdout_benchmark.py
 
-    - name: Run Multi-Tier Performance Profiler (500+ Iterations)
-      run: |
-        python tests/evaluation/profile_performance.py
-
     - name: Verify CLI Functionality
       run: |
         selfheal --help
         python -m selfheal.cli report --format all
 
-    - name: Upload Test Reports, Distributions & Benchmark Artifacts
+    - name: Upload Test Reports & Artifacts
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
       uses: actions/upload-artifact@v4
       with:
-        name: selfheal-rc1-artifacts
+        name: selfheal-1.0.0-artifacts
         path: |
           dist/
           artifacts/reports/

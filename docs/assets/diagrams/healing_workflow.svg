@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #0F1013; }
+      .node-normal { fill: #1C1E24; stroke: #3A3D46; stroke-width: 1.5; rx: 6px; }
+      .node-decision { fill: #24211D; stroke: #E0A45C; stroke-width: 2; rx: 6px; }
+      .node-success { fill: #15291E; stroke: #4EBA86; stroke-width: 2; rx: 6px; }
+      .node-reject { fill: #2E1B1B; stroke: #E05C5C; stroke-width: 1.5; rx: 6px; }
+      .title { font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 700; fill: #F2EFE8; font-size: 20px; }
+      .sub-title { font-family: 'Space Grotesk', monospace; font-size: 11px; fill: #E0A45C; letter-spacing: 1px; }
+      .text-title { font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 600; fill: #F2EFE8; font-size: 13px; text-anchor: middle; }
+      .text-desc { font-family: 'Manrope', -apple-system, sans-serif; font-weight: 400; fill: #8B9099; font-size: 11px; text-anchor: middle; }
+      .text-success { font-family: 'Manrope', -apple-system, sans-serif; font-weight: 600; fill: #4EBA86; font-size: 12px; text-anchor: middle; }
+      .text-reject { font-family: 'Manrope', -apple-system, sans-serif; font-weight: 600; fill: #E05C5C; font-size: 11px; text-anchor: middle; }
+      .label-yes { font-family: 'Space Grotesk', monospace; font-size: 11px; font-weight: 700; fill: #4EBA86; }
+      .label-no { font-family: 'Space Grotesk', monospace; font-size: 11px; font-weight: 700; fill: #E05C5C; }
+      .arrow { stroke: #E0A45C; stroke-width: 1.5; fill: none; marker-end: url(#wf-arrow); }
+      .arrow-green { stroke: #4EBA86; stroke-width: 1.5; fill: none; marker-end: url(#wf-arrow-green); }
+      .arrow-red { stroke: #E05C5C; stroke-width: 1.5; fill: none; marker-end: url(#wf-arrow-red); }
+    </style>
+    <marker id="wf-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E0A45C" />
+    </marker>
+    <marker id="wf-arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4EBA86" />
+    </marker>
+    <marker id="wf-arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E05C5C" />
+    </marker>
+  </defs>
+
+  <rect width="1000" height="680" class="bg" rx="12" />
+
+  <!-- Title Header -->
+  <text x="40" y="45" class="title">SelfHeal — Deterministic Healing Decision Lifecycle</text>
+  <text x="750" y="45" class="sub-title">ZERO FALSE POSITIVE GUARANTEE</text>
+  <line x1="40" y1="62" x2="960" y2="62" stroke="#2E3138" stroke-width="1" />
+
+  <!-- Step 1: Initial Action -->
+  <rect x="50" y="90" width="180" height="60" class="node-normal" />
+  <text x="140" y="116" class="text-title">Playwright Action</text>
+  <text x="140" y="136" class="text-desc">.click(), .fill(), .hover()</text>
+
+  <!-- Decision: Locator Found? -->
+  <rect x="270" y="90" width="170" height="60" class="node-decision" />
+  <text x="355" y="116" class="text-title">Element Found?</text>
+  <text x="355" y="136" class="text-desc">Within action timeout</text>
+
+  <!-- Normal Success -->
+  <rect x="500" y="90" width="190" height="60" class="node-success" />
+  <text x="595" y="116" class="text-title">Normal Execution</text>
+  <text x="595" y="136" class="text-success">Commit/Update Baseline</text>
+
+  <!-- Step 2: Failure Classification -->
+  <rect x="270" y="210" width="170" height="70" class="node-decision" />
+  <text x="355" y="236" class="text-title">Failure Classifier</text>
+  <text x="355" y="254" class="text-desc">Inspects count &amp; visibility</text>
+  <text x="355" y="270" class="text-desc">count == 0 vs state</text>
+
+  <!-- Reject: Actionability -->
+  <rect x="50" y="215" width="180" height="60" class="node-reject" />
+  <text x="140" y="240" class="text-title">Abort Healing</text>
+  <text x="140" y="258" class="text-reject">Hidden / Disabled / Syntax</text>
+
+  <!-- Step 3: Fingerprint & DOM Extraction -->
+  <rect x="270" y="340" width="170" height="60" class="node-normal" />
+  <text x="355" y="366" class="text-title">Extract Live DOM</text>
+  <text x="355" y="384" class="text-desc">Fetch baseline fingerprint</text>
+
+  <!-- Step 4: Multi-dimensional Similarity -->
+  <rect x="490" y="340" width="200" height="60" class="node-normal" />
+  <text x="590" y="364" class="text-title">Similarity Engine</text>
+  <text x="590" y="384" class="text-desc">6 Dimensions + RapidFuzz</text>
+
+  <!-- Step 5: Score Gate (S >= 0.80) -->
+  <rect x="740" y="340" width="180" height="60" class="node-decision" />
+  <text x="830" y="364" class="text-title">Score S &#8805; 0.80?</text>
+  <text x="830" y="384" class="text-desc">Confidence Threshold</text>
+
+  <!-- Step 6: Margin Gate (Gap >= 0.10) -->
+  <rect x="740" y="470" width="180" height="60" class="node-decision" />
+  <text x="830" y="494" class="text-title">Margin &#916; &#8805; 0.10?</text>
+  <text x="830" y="514" class="text-desc">Ambiguity Protection</text>
+
+  <!-- Reject: Ambiguity or Low Score -->
+  <rect x="500" y="470" width="180" height="60" class="node-reject" />
+  <text x="590" y="494" class="text-title">Escalate Failure</text>
+  <text x="590" y="514" class="text-reject">Ambiguous / Score &lt; 0.80</text>
+
+  <!-- Step 7: Uniqueness & Single Retry -->
+  <rect x="740" y="590" width="180" height="60" class="node-decision" />
+  <text x="830" y="614" class="text-title">Count == 1 &amp; Retry</text>
+  <text x="830" y="634" class="text-desc">Execute single retry</text>
+
+  <!-- Step 8: Log Healed & Audit Trail -->
+  <rect x="450" y="590" width="230" height="60" class="node-success" />
+  <text x="565" y="614" class="text-title">Action Succeeded (Healed)</text>
+  <text x="565" y="634" class="text-success">SQLite WAL + Streamlit Queue</text>
+
+  <!-- Connections -->
+  <path d="M 230 120 L 270 120" class="arrow" />
+  <path d="M 440 120 L 500 120" class="arrow-green" />
+  <text x="455" y="112" class="label-yes">YES</text>
+
+  <path d="M 355 150 L 355 210" class="arrow" />
+  <text x="365" y="185" class="label-no">TIMEOUT</text>
+
+  <path d="M 270 245 L 230 245" class="arrow-red" />
+  <text x="236" y="238" class="label-no">DEFECT</text>
+
+  <path d="M 355 280 L 355 340" class="arrow" />
+  <text x="365" y="315" class="label-yes">ABSENT</text>
+
+  <path d="M 440 370 L 490 370" class="arrow" />
+  <path d="M 690 370 L 740 370" class="arrow" />
+
+  <path d="M 830 400 L 830 470" class="arrow-green" />
+  <text x="840" y="440" class="label-yes">YES</text>
+
+  <path d="M 830 340 L 830 300 L 590 300 L 590 470" class="arrow-red" />
+  <text x="700" y="292" class="label-no">NO (SCORE &lt; 0.80)</text>
+
+  <path d="M 740 500 L 680 500" class="arrow-red" />
+  <text x="695" y="492" class="label-no">NO</text>
+
+  <path d="M 830 530 L 830 590" class="arrow-green" />
+  <text x="840" y="565" class="label-yes">YES</text>
+
+  <path d="M 740 620 L 680 620" class="arrow-green" />
+  <text x="695" y="612" class="label-yes">PASS</text>
+</svg>
+

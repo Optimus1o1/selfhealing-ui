@@ -24,6 +24,16 @@ Welcome to the comprehensive technical documentation and academic research archi
 | **[9. Demonstration Presentation Script](demo_presentation_script.md)** | 5–7 Minute Defense Presentation Script | Timed cues, talking points, live terminal commands, browser actions, and dashboard walkthrough guide. |
 | **[10. Release Readiness Report](release_readiness_report.md)** | Engineering Reliability Audit & Release Verdict | Final release audit, test verification, security & privacy analysis, packaging checks, release blockers, and readiness recommendation. |
 | **[11. Release Notes (v1.0.0)](release_1.0.0.md)** | Official Stable 1.0.0 Release Notes | Product overview, capabilities, canonical benchmarks, installation, quickstart, and known platform limitations. |
+| **[12. Project Showcase & Presentation Guide](project_showcase.md)** | Demonstration Scripts & Showcase Outline | 3-minute technical pitch, 5-minute product demo, portfolio guide, visual asset gallery, and differentiator summary. |
+
+---
+
+## 🎨 Visual Project Assets (`docs/assets/`)
+
+Visual assets and diagrams are curated under `docs/assets/`:
+* **Diagrams (`docs/assets/diagrams/`)**: Standalone SVG vector diagrams for system architecture, healing decision lifecycle, and similarity engine weights styled in the Moon Sanctum Labs palette.
+* **Dashboard Gallery (`docs/assets/dashboard/`)**: High-resolution screenshots of all 9 Streamlit monitoring and audit modules.
+* **Demonstration Evidence (`docs/assets/demo/`)**: Captured evidence of baseline creation, V2 mutation healing, candidate disambiguation, and safety rejections.
 
 ---
 

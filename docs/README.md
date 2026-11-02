@@ -25,6 +25,11 @@ Welcome to the comprehensive technical documentation and academic research archi
 | **[10. Release Readiness Report](release_readiness_report.md)** | Engineering Reliability Audit & Release Verdict | Final release audit, test verification, security & privacy analysis, packaging checks, release blockers, and readiness recommendation. |
 | **[11. Release Notes (v1.0.0)](release_1.0.0.md)** | Official Stable 1.0.0 Release Notes | Product overview, capabilities, canonical benchmarks, installation, quickstart, and known platform limitations. |
 | **[12. Project Showcase & Presentation Guide](project_showcase.md)** | Demonstration Scripts & Showcase Outline | 3-minute technical pitch, 5-minute product demo, portfolio guide, visual asset gallery, and differentiator summary. |
+| **[13. Technical Engineering Case Study](engineering_case_study.md)** | In-Depth Engineering & Architectural Paper | Detailed case study on the brittle locator tax, deterministic vs LLM approaches, mathematical guardrails, and telemetry. |
+| **[14. Technical Video Screenplay](demo_video_script.md)** | 3–5 Minute Video Screenplay & Recording Guide | Scene-by-scene script with visual cues, screen layouts, voiceover copy, and OBS Studio recording checklist. |
+| **[15. Engineering Portfolio Guide](portfolio_presentation.md)** | Portfolio Integration & Project Showcase | Summary for hiring managers, technical highlights, visual diagrams, benchmark tables, and live demo commands. |
+| **[16. LinkedIn Launch Package](linkedin_launch.md)** | Professional Social Launch Content | Long-form technical post, demo video caption, 5-slide carousel summary, and engineering hashtags. |
+| **[17. Showcase Verification Checklist](showcase_checklist.md)** | Quality Assurance & Launch Checklist | Verification checklist for code quality, benchmark results, visual assets, and GitHub Actions release verification. |
 
 ---
 

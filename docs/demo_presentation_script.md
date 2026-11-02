@@ -2,7 +2,7 @@
 
 **Moon Sanctum Labs** — *Decode. Build. Evolve.*  
 **Lead Engineer & Presenter:** Aniket Nandi (Kolkata, IST)  
-**System Version:** `1.0.0rc1`  
+**System Version:** `1.0.0` (Stable)  
 **Duration:** 6 Minutes (Target Range: 5:00 – 7:00 Minutes)  
 
 ---

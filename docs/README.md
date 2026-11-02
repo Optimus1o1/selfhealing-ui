@@ -30,6 +30,7 @@ Welcome to the comprehensive technical documentation and academic research archi
 | **[15. Engineering Portfolio Guide](portfolio_presentation.md)** | Portfolio Integration & Project Showcase | Summary for hiring managers, technical highlights, visual diagrams, benchmark tables, and live demo commands. |
 | **[16. LinkedIn Launch Package](linkedin_launch.md)** | Professional Social Launch Content | Long-form technical post, demo video caption, 5-slide carousel summary, and engineering hashtags. |
 | **[17. Showcase Verification Checklist](showcase_checklist.md)** | Quality Assurance & Launch Checklist | Verification checklist for code quality, benchmark results, visual assets, and GitHub Actions release verification. |
+| **[18. Google Flow Video Generation Kit](google_flow_video_prompts.md)** | Generative AI Video Prompts & Storyboards | Exact scene-by-scene prompts, visual resource mappings, durations, and voiceover scripts for video generation. |
 
 ---
 

@@ -42,19 +42,19 @@
 
 > **Important Boundary Rule:** Do NOT check off these items until the physical actions have been completed on GitHub.
 
-- [ ] **Remote Creation:** Empty public repository `selfhealing-ui` created under GitHub account `Optimus1o1`.
-- [ ] **Remote Origin Added:** `git remote add origin https://github.com/Optimus1o1/selfhealing-ui.git` executed.
-- [ ] **Initial Push:** `git push -u origin master` completed successfully.
-- [ ] **Remote CI Matrix (GitHub Actions):** All 4 matrix jobs passing green:
-  - [ ] Ubuntu / Python 3.11
-  - [ ] Ubuntu / Python 3.12
-  - [ ] Windows / Python 3.11
-  - [ ] Windows / Python 3.12
-- [ ] **Release Tag:** Annotated tag `v1.0.0` pushed to GitHub (`git tag -a v1.0.0`, `git push origin v1.0.0`).
-- [ ] **GitHub Release Published:** Release created on GitHub with attached distributions:
-  - [ ] `dist/selfheal-1.0.0-py3-none-any.whl`
-  - [ ] `dist/selfheal-1.0.0.tar.gz`
-  - [ ] Release description populated from `docs/release_1.0.0.md`.
+- [x] **Remote Creation:** Public repository `selfhealing-ui` created under GitHub account `Optimus1o1`.
+- [x] **Remote Origin Added:** `git remote add origin https://github.com/Optimus1o1/selfhealing-ui.git` executed.
+- [x] **Initial Push:** `git push -u origin master` completed successfully.
+- [x] **Remote CI Matrix (GitHub Actions):** All 4 matrix jobs passing green (Run #41456397712):
+  - [x] Ubuntu / Python 3.11
+  - [x] Ubuntu / Python 3.12
+  - [x] Windows / Python 3.11
+  - [x] Windows / Python 3.12
+- [x] **Release Tag:** Annotated tag `v1.0.0` pushed to GitHub (`v1.0.0`).
+- [x] **GitHub Release Published:** Release published at `https://github.com/Optimus1o1/selfhealing-ui/releases/tag/v1.0.0` with attached distributions:
+  - [x] `dist/selfheal-1.0.0-py3-none-any.whl`
+  - [x] `dist/selfheal-1.0.0.tar.gz`
+  - [x] Release description populated from `docs/release_1.0.0.md`.
 
 ---
 

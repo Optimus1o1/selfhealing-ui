@@ -1,27 +1,17 @@
 """
-End-to-End E-Commerce Demonstration Test Suite.
-Moon Sanctum Labs — Decode. Build. Evolve.
+End-to-End E-Commerce Demonstration Test Suite (Scenarios A through G).
+Moon Sanctum Labs -- Decode. Build. Evolve.
 
-Demonstrates the complete 12-step autonomous self-healing lifecycle on a realistic,
-multi-page e-commerce application without changing the original Playwright test code.
+Demonstrates the 7 Core Self-Healing Scenarios on a realistic,
+multi-page e-commerce application without changing the original Playwright test code:
 
-1. Baseline Creation (V1)
-2. Successful Initial Execution (V1)
-3. UI Refactoring & Mutation (V2)
-4. Original Locator Failure Interception
-5. Failure Classification (Actionability vs Missing)
-6. DOM Scanning (In-Browser JS)
-7. Multi-Dimensional Similarity Scoring
-8. Healing Decision Approval (Threshold >= 0.80, Margin >= 0.10)
-9. Single Safe Retry Execution
-10. Audit Logging (SQLite WAL)
-11. Dashboard Verification
-12. Baseline Promotion to V2
-
-Includes:
-- Positive End-to-End E-Commerce Healing Journey (Login -> Catalog -> Cart -> Checkout -> Success)
-- Negative Ambiguity Collision Rejection (Near-tie candidates rejected safely)
-- Negative Actionability Rejection (Disabled target element rejected safely)
+  Scenario A: Successful baseline creation (Version 1 Original DOM)
+  Scenario B: Successful healing after an ID change (#btnLogin -> #btnSignInSubmit)
+  Scenario C: Healing after a button text change ("Proceed to Checkout" -> "Continue to Payment")
+  Scenario D: Healing after DOM restructuring (Nested fieldsets on checkout)
+  Scenario E: Healing with multiple candidate elements via contextual disambiguation (Catalog grid)
+  Scenario F: Correct rejection of ambiguous candidates (Margin < 0.10)
+  Scenario G: Correct rejection of missing or disabled elements (Actionability failure)
 """
 
 import pytest

@@ -68,3 +68,4 @@ Thank you for your interest in contributing to the **Self-Healing UI Automation 
 - All new features or locator scoring adaptations must include unit tests in `tests/unit/`.
 - Ensure all 23 unit and integration tests pass before opening a PR.
 - Conventional Commits format is enforced: `feat:`, `fix:`, `test:`, `docs:`, `refactor:`.
+

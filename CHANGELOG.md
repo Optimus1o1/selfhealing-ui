@@ -38,3 +38,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Hardened sensitive attribute redaction covering `password`, `token`, `secret`, `apikey`, `credit_card`, and `cvv`.
 - Enforced empty strings for password inner text and input values.
 - Formally validated SQL parameterized statements across all repository queries.
+

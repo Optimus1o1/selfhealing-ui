@@ -45,3 +45,4 @@ If you discover a security vulnerability in this framework:
 1. Please report it privately by contacting **security@moonsanctum.com** or reaching out directly to the maintainers.
 2. Please do not open a public issue on GitHub until the vulnerability has been evaluated and patched.
 3. Include detailed steps to reproduce the issue, including Playwright scripts or DOM fixtures if applicable.
+

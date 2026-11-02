@@ -188,3 +188,17 @@ class BaselineRepository:
             ev_stats = dict(cur_events.fetchone() or {})
             stats.update(ev_stats)
             return stats
+
+    def get_test_runs(self) -> list[dict[str, Any]]:
+        with self.db.session() as conn:
+            cur = conn.execute("SELECT * FROM test_runs ORDER BY started_at DESC")
+            return [dict(r) for r in cur.fetchall()]
+
+    def get_fingerprint_versions(self, target_key: str) -> list[ElementFingerprint]:
+        with self.db.session() as conn:
+            cur = conn.execute(
+                "SELECT * FROM element_fingerprints WHERE target_key = ? ORDER BY version ASC",
+                (target_key,)
+            )
+            return [ElementFingerprint.from_db_row(dict(r)) for r in cur.fetchall()]
+

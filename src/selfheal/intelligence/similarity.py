@@ -10,7 +10,7 @@ from selfheal.scanner.dom_scanner import CandidateElement
 UI_SYNONYM_SETS = [
     {"login", "sign in", "log in", "signin", "authenticate"},
     {"register", "sign up", "signup", "create account", "join"},
-    {"submit", "confirm", "send", "save", "apply", "commit", "done", "continue", "proceed", "next"},
+    {"submit", "confirm", "send", "save", "apply", "commit", "done", "continue", "proceed", "next", "complete", "place"},
     {"cancel", "dismiss", "close", "abort", "exit"},
     {"search", "find", "query", "lookup"},
     {"delete", "remove", "trash", "discard", "destroy"},
@@ -18,6 +18,8 @@ UI_SYNONYM_SETS = [
     {"add", "new", "create", "insert"},
     {"back", "prev", "previous", "return"},
     {"ok", "accept", "agree", "yes"},
+    {"cart", "bag", "basket"},
+    {"checkout", "payment", "pay", "purchase", "order"},
 ]
 
 
@@ -85,11 +87,15 @@ def compute_text_similarity(baseline_text: str, candidate_text: str, baseline_ac
                 fuzzy = min(fuzzy, 0.70)
         return fuzzy
 
+    if base_acc and cand_acc:
+        acc_sim = pair_sim(base_acc, cand_acc)
+        if base_t and cand_t:
+            return 0.70 * acc_sim + 0.30 * pair_sim(base_t, cand_t)
+        return acc_sim
+
     scores = []
     if base_t and cand_t:
         scores.append(pair_sim(base_t, cand_t))
-    if base_acc and cand_acc:
-        scores.append(pair_sim(base_acc, cand_acc))
     if base_t and cand_acc:
         scores.append(pair_sim(base_t, cand_acc))
     if base_acc and cand_t:

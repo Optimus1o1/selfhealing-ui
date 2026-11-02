@@ -1,0 +1,154 @@
+{
+  "timeout_investigation": [
+    {
+      "scenario": "Static Broken Locator (Healed)",
+      "action_timeout_ms": 1000,
+      "element_delay_ms": 0,
+      "outcome": "SUCCESS_HEALED",
+      "total_latency_ms": 1562.89,
+      "timeout_portion_ms": 1000,
+      "analysis": "At 1000ms timeout, healing completed in 1562.9ms. The Playwright timeout accounted for 64.0% of total duration."
+    },
+    {
+      "scenario": "Static Broken Locator (Healed)",
+      "action_timeout_ms": 2500,
+      "element_delay_ms": 0,
+      "outcome": "SUCCESS_HEALED",
+      "total_latency_ms": 3074.97,
+      "timeout_portion_ms": 2500,
+      "analysis": "At 2500ms timeout, healing completed in 3075.0ms. The Playwright timeout accounted for 81.3% of total duration."
+    },
+    {
+      "scenario": "Delayed Hydration (1400ms)",
+      "action_timeout_ms": 1000,
+      "element_delay_ms": 1400,
+      "outcome": "FALSE_HEAL_ATTEMPT_OR_FAILURE",
+      "total_latency_ms": 1552.73,
+      "timeout_portion_ms": 1000,
+      "analysis": "Timeout (1000ms) expired before element hydration (1400ms), triggering premature failure/healing."
+    },
+    {
+      "scenario": "Delayed Hydration (1400ms)",
+      "action_timeout_ms": 2500,
+      "element_delay_ms": 1400,
+      "outcome": "SUCCESS_NORMAL",
+      "total_latency_ms": 1885.47,
+      "timeout_portion_ms": 2500,
+      "analysis": "Element resolved naturally at 1400ms without false triggering. Total: 1885.5ms."
+    }
+  ],
+  "negative_hardening": {
+    "total_cases": 15,
+    "passed": 15,
+    "failed": 0,
+    "precision": 1.0,
+    "false_positive_rate": 0.0,
+    "details": [
+      {
+        "test_name": "Completely Irrelevant Navigation Link",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.3404,
+        "passed": true
+      },
+      {
+        "test_name": "Unrelated Input Field",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.2077,
+        "passed": true
+      },
+      {
+        "test_name": "Different Semantic Action (Cancel)",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.4818,
+        "passed": true
+      },
+      {
+        "test_name": "Two Identical Form Buttons (Margin = 0.0)",
+        "expected": "REJECTED_AMBIGUOUS_MATCH",
+        "actual": "REJECTED_AMBIGUOUS_MATCH",
+        "top_score": 0.862,
+        "passed": true
+      },
+      {
+        "test_name": "Duplicate Primary Buttons in Header and Modal (Margin = 0.01)",
+        "expected": "REJECTED_AMBIGUOUS_MATCH",
+        "actual": "REJECTED_AMBIGUOUS_MATCH",
+        "top_score": 0.862,
+        "passed": true
+      },
+      {
+        "test_name": "Three Sibling Options with Same Text (Margin < 0.10)",
+        "expected": "REJECTED_AMBIGUOUS_MATCH",
+        "actual": "REJECTED_AMBIGUOUS_MATCH",
+        "top_score": 0.8592,
+        "passed": true
+      },
+      {
+        "test_name": "Delete instead of Submit",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.5107,
+        "passed": true
+      },
+      {
+        "test_name": "Log Out instead of Submit",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.3849,
+        "passed": true
+      },
+      {
+        "test_name": "Back / Return instead of Submit",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.3417,
+        "passed": true
+      },
+      {
+        "test_name": "Empty Candidate List",
+        "expected": "REJECTED_NO_CANDIDATES",
+        "actual": "REJECTED_NO_CANDIDATES",
+        "top_score": 0.0,
+        "passed": true
+      },
+      {
+        "test_name": "Only Non-Interactive Div Containers Present",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.3325,
+        "passed": true
+      },
+      {
+        "test_name": "Span Elements with Unrelated Text",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.2571,
+        "passed": true
+      },
+      {
+        "test_name": "Matching Tag But Empty Text & Random ID",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.2977,
+        "passed": true
+      },
+      {
+        "test_name": "Matching Class Only ('btn')",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.4223,
+        "passed": true
+      },
+      {
+        "test_name": "Same Tag Different Form Container",
+        "expected": "REJECTED_LOW_CONFIDENCE",
+        "actual": "REJECTED_LOW_CONFIDENCE",
+        "top_score": 0.4186,
+        "passed": true
+      }
+    ]
+  }
+}

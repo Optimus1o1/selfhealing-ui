@@ -222,31 +222,51 @@ weights:
 
 ---
 
+## 🎓 Academic Demonstration & Live Viva Runner
+
+A standalone, self-contained multi-page e-commerce web application (`demo_app/ecommerce.py`) is provided with two complete versions:
+- **Version 1 (V1 Baseline)**: Standard semantic IDs (`#btnLogin`, `#btnAddToCart1`, `#btnProceedCheckout`, `#btnPlaceOrder`).
+- **Version 2 (V2 Refactored)**: Complex visual and structural UI mutations (kebab-case IDs, Tailwind styling, multi-word semantic synonyms, nested container changes).
+
+### 1. Run the Complete 12-Step Academic Journey (One Command)
+```bash
+# Headless autonomous execution with colored terminal logs
+python scripts/run_academic_demo.py
+
+# Or run with a visible browser window for live viva demonstration
+python scripts/run_academic_demo.py --headed
+```
+The demonstration proves:
+1. **Unchanged Test Scripts**: Version 2 runs the exact same code written for Version 1.
+2. **Deterministic Healing**: Repairs 4/4 broken locators with average score $\ge 0.84$.
+3. **Multi-Card Disambiguation**: Uses accessible names to disambiguate 3 identical "Add to Bag" buttons in the product grid without misclicks.
+4. **Safety Guardrail 1 (Ambiguity Margin < 0.10)**: Prevents accidental interaction on near-tie payment buttons (`REJECTED_AMBIGUOUS_MATCH`).
+5. **Safety Guardrail 2 (Actionability Failure)**: Intercepts disabled checkout button (`REJECTED_ACTIONABILITY`).
+6. **Baseline Promotion**: Promotes repaired locators to Version 2 in SQLite WAL with human QA sign-off.
+
+---
+
 ## 🖥️ Streamlit Audit Dashboard & Reports
 
 ### 1. Launching Dashboard
 ```bash
 selfheal dashboard --port 8501
+# Or directly via streamlit:
+streamlit run src/selfheal/dashboard/app.py
 ```
 Navigate to `http://localhost:8501` to access:
-- **Executive KPIs**: Total runs, healing count, success rate, average confidence, and latency.
-- **Review & Promotion Portal**: Audit pending repaired locators. One-click **Approve & Promote** updates the baseline version to v2; **Reject Repair** marks the event as rejected.
-- **Score Breakdown Inspector**: Examine individual scores across all 6 dimensions.
-- **Locator History**: Full audit trail of all promoted locators.
-
-### 2. Generating Standalone Reports
-```bash
-# Generate both JSON and Jinja2 HTML reports
-selfheal report --format all
-```
-Reports are written to `artifacts/reports/report.html` and `artifacts/reports/report.json`.
+- **Tab 1: Test Execution Overview**: Run summary, passed/healed action counters.
+- **Tab 2: Healing Events & Score Inspector**: Side-by-side selector diff and 6-dimension score metrics (Text, Role, Attr, Parent, Children, Position).
+- **Tab 3: Assisted Review & Promotion**: One-click **Approve & Promote** to baseline v2 or **Reject Repair**.
+- **Tab 4: Baseline Version Comparison**: Side-by-side evolution of baseline versions (v1 vs v2).
+- **Tab 5: Performance & Latency Analytics**: P50/P90/P95 latency percentiles and timeout dominance breakdown.
 
 ---
 
 ## 🧪 Running Tests & Benchmarks
 
 ```bash
-# Run all 23 unit, integration, edge case, and healing tests
+# Run all 26 unit, integration, edge case, and e-commerce healing tests
 python -m pytest tests/ -v
 
 # Run the 57-scenario baseline evaluation benchmark
@@ -254,6 +274,9 @@ python tests/evaluation/benchmark.py
 
 # Run the 52-scenario independent holdout validation
 python tests/evaluation/holdout_benchmark.py
+
+# Run the action timeout (1000ms vs 2500ms) and 15-case negative evaluation
+python tests/evaluation/timeout_investigation.py
 
 # Run the multi-tier performance profiler (500+ iterations)
 python tests/evaluation/profile_performance.py

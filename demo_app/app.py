@@ -1,6 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 from typing import Optional
+from demo_app.ecommerce import get_ecommerce_page
 
 
 V1_HTML = """<!DOCTYPE html>
@@ -99,6 +100,12 @@ class DemoAppHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         path = self.path.split("?")[0]
+        # Check for e-commerce demo application routes
+        ecommerce_html = get_ecommerce_page(path)
+        if ecommerce_html:
+            self._respond(ecommerce_html)
+            return
+
         if path in ("/", "/v1"):
             self._respond(V1_HTML)
         elif path == "/v2":

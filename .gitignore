@@ -38,8 +38,11 @@ blob-report/
 
 # SQLite & App runtime
 *.db
+**/*.db
 *.db-wal
+**/*.db-wal
 *.db-shm
+**/*.db-shm
 artifacts/screenshots/
 artifacts/reports/
 !artifacts/reports/.gitkeep

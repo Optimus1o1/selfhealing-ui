@@ -202,3 +202,55 @@ class BaselineRepository:
             )
             return [ElementFingerprint.from_db_row(dict(r)) for r in cur.fetchall()]
 
+    def get_healing_event_by_id(self, event_id: int) -> Optional[dict[str, Any]]:
+        with self.db.session() as conn:
+            cur = conn.execute("SELECT * FROM healing_events WHERE id = ?", (event_id,))
+            row = cur.fetchone()
+            return dict(row) if row else None
+
+    def get_all_target_keys(self) -> list[str]:
+        with self.db.session() as conn:
+            cur = conn.execute("SELECT DISTINCT target_key FROM element_fingerprints ORDER BY target_key ASC")
+            return [r["target_key"] for r in cur.fetchall()]
+
+    def get_locator_stability_stats(self) -> list[dict[str, Any]]:
+        with self.db.session() as conn:
+            cur = conn.execute("""
+                SELECT 
+                    ef.target_key,
+                    MIN(ef.original_selector) as initial_selector,
+                    MAX(ef.version) as total_versions,
+                    MAX(ef.created_at) as last_updated,
+                    (SELECT original_selector FROM element_fingerprints WHERE target_key = ef.target_key AND status = 'active' ORDER BY version DESC LIMIT 1) as active_selector,
+                    (SELECT COUNT(*) FROM healing_events WHERE target_key = ef.target_key) as times_intercepted,
+                    (SELECT COUNT(*) FROM healing_events WHERE target_key = ef.target_key AND decision = 'APPROVED') as times_approved,
+                    (SELECT COUNT(*) FROM healing_events WHERE target_key = ef.target_key AND decision != 'APPROVED') as times_rejected
+                FROM element_fingerprints ef
+                GROUP BY ef.target_key
+                ORDER BY ef.target_key ASC
+            """)
+            return [dict(r) for r in cur.fetchall()]
+
+    def get_latency_percentiles(self) -> dict[str, float]:
+        with self.db.session() as conn:
+            cur = conn.execute("SELECT latency_ms FROM healing_events WHERE latency_ms > 0 ORDER BY latency_ms ASC")
+            lats = [r["latency_ms"] for r in cur.fetchall()]
+            if not lats:
+                return {"count": 0, "mean": 0.0, "p50": 0.0, "p90": 0.0, "p95": 0.0, "min": 0.0, "max": 0.0}
+
+            n = len(lats)
+            def percentile(p: float) -> float:
+                idx = int(p * (n - 1))
+                return lats[idx]
+
+            return {
+                "count": n,
+                "mean": round(sum(lats) / n, 2),
+                "p50": round(percentile(0.50), 2),
+                "p90": round(percentile(0.90), 2),
+                "p95": round(percentile(0.95), 2),
+                "min": round(lats[0], 2),
+                "max": round(lats[-1], 2),
+            }
+
+

@@ -246,27 +246,34 @@ The demonstration proves:
 
 ---
 
-## 🖥️ Streamlit Audit Dashboard & Reports
+## 🖥️ Streamlit Audit & Engineering Monitoring Dashboard
 
-### 1. Launching Dashboard
+The dashboard provides an enterprise-grade engineering monitoring, audit, and governance control interface. Every displayed metric and table is dynamically queried from the local SQLite WAL database (`artifacts/selfheal.db`).
+
+### Launching Dashboard
 ```bash
 selfheal dashboard --port 8501
 # Or directly via streamlit:
 streamlit run src/selfheal/dashboard/app.py
 ```
-Navigate to `http://localhost:8501` to access:
-- **Tab 1: Test Execution Overview**: Run summary, passed/healed action counters.
-- **Tab 2: Healing Events & Score Inspector**: Side-by-side selector diff and 6-dimension score metrics (Text, Role, Attr, Parent, Children, Position).
-- **Tab 3: Assisted Review & Promotion**: One-click **Approve & Promote** to baseline v2 or **Reject Repair**.
-- **Tab 4: Baseline Version Comparison**: Side-by-side evolution of baseline versions (v1 vs v2).
-- **Tab 5: Performance & Latency Analytics**: P50/P90/P95 latency percentiles and timeout dominance breakdown.
+Navigate to `http://localhost:8501` to access the 9 core modules via the sidebar:
+
+1. **Overview**: Executive telemetry showing total test runs, interaction volumes, passed/failed counts, healed interactions, rejected attempts, overall healing success rate, and mean healing latency. Includes historical execution trend charts.
+2. **Live Execution**: Real-time session monitoring with run-level selector filters, execution status badges (`PASSED`, `FAILED`, `HEALED`), start/completion timestamps, and chronological step breakdowns.
+3. **Healing Analytics**: Decision triage analysis (Approved vs Rejected), failure classification distributions (`LOCATOR_ABSENT`, `ELEMENT_DISABLED`, `AMBIGUOUS_LOCATOR`, etc.), single-retry success rates, and similarity score distributions.
+4. **Locator Explorer**: Target key inventory, current active vs initial selectors, locator stability index, total version counts, interception frequency, and historical selector mutation timeline.
+5. **Fingerprint Inspector**: Side-by-side DOM attribute diff table comparing baseline vs healed candidate attributes (tag, ID, classes, name, role, accessible name, placeholder, text, xpath, position). Highlights attributes as `MATCHED`, `CHANGED`, or `NEW`.
+6. **Intelligence Inspector**: Deep mathematical transparency for each healing decision. Visualizes the 6 individual similarity dimensions (Text 30%, Tag/Role 20%, Attributes 20%, Parent 15%, Children 10%, Geometry 5%), decision threshold ($S \ge 0.80$) and margin ($\Delta \ge 0.10$) guardrails, and natural language decision explanations.
+7. **Audit Centre**: Engineering governance and human sign-off portal. Displays the pending review queue with an explicit confirmation checkbox gate before enabling the **Approve & Promote to V2** action, or allows QA engineers to **Reject Repair** and leave notes.
+8. **Baseline Manager**: Version lifecycle tracking (v1 $\rightarrow$ v2), timestamp tracking, and active vs archived baseline inventory per target key.
+9. **Performance Monitor**: Live latency telemetry comparing real-time SQLite database percentiles (P50, P90, P95, Min, Max) against pre-computed laboratory benchmarks. Explains the latency breakdown (Playwright timeout vs grace period vs pure algorithmic matching).
 
 ---
 
 ## 🧪 Running Tests & Benchmarks
 
 ```bash
-# Run all 26 unit, integration, edge case, and e-commerce healing tests
+# Run all 30 unit, integration, edge case, and e-commerce healing tests
 python -m pytest tests/ -v
 
 # Run the 57-scenario baseline evaluation benchmark

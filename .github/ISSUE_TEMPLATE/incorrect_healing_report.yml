@@ -1,0 +1,83 @@
+name: "\u26A0\uFE0F Incorrect Healing Report"
+description: Report a case where SelfHeal healed to the wrong element (false positive)
+title: "[Incorrect Healing]: "
+labels: ["bug", "false-positive", "critical"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **False positives are our highest-priority bugs.** SelfHeal's core design principle is that incorrect healing is worse than no healing. Please provide as much detail as possible.
+
+  - type: input
+    id: version
+    attributes:
+      label: SelfHeal Version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: original-locator
+    attributes:
+      label: Original Locator
+      description: "The Playwright locator that failed (e.g., `page.click('#submit-btn')`)."
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-element
+    attributes:
+      label: Expected Replacement Element
+      description: "Describe the element SelfHeal should have selected."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-element
+    attributes:
+      label: Actual (Incorrect) Replacement Element
+      description: "Describe the element SelfHeal actually selected."
+    validations:
+      required: true
+
+  - type: textarea
+    id: similarity-scores
+    attributes:
+      label: Similarity Scores
+      description: "If available, paste the 6-dimension score breakdown from the Intelligence Inspector or CLI output."
+      render: text
+
+  - type: textarea
+    id: dom-context
+    attributes:
+      label: DOM Context
+      description: "Relevant HTML snippet showing both the expected and incorrectly selected elements."
+      render: html
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration
+      description: "Any non-default configuration values (minimum_similarity_score, minimum_score_margin, etc.)."
+      render: yaml
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: "Minimal steps to reproduce the incorrect healing."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have verified the expected element exists in the DOM at the time of healing
+          required: true
+        - label: I have checked the dashboard Audit Centre for the healing event
+          required: true
+        - label: The incorrect healing is reproducible (not a one-time race condition)
+          required: true

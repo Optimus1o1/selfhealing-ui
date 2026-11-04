@@ -31,6 +31,12 @@ Welcome to the comprehensive technical documentation and academic research archi
 | **[16. LinkedIn Launch Package](linkedin_launch.md)** | Professional Social Launch Content | Long-form technical post, demo video caption, 5-slide carousel summary, and engineering hashtags. |
 | **[17. Showcase Verification Checklist](showcase_checklist.md)** | Quality Assurance & Launch Checklist | Verification checklist for code quality, benchmark results, visual assets, and GitHub Actions release verification. |
 | **[18. Google Flow Video Generation Kit](google_flow_video_prompts.md)** | Generative AI Video Prompts & Storyboards | Exact scene-by-scene prompts, visual resource mappings, durations, and voiceover scripts for video generation. |
+| **[19. Pilot Testing Framework](pilot_testing_framework.md)** | External Developer Pilot Programme | Participant prerequisites, step-by-step integration guide, baseline/mutation/healing walkthrough, structured feedback template. |
+| **[20. Compatibility Test Scenarios](compatibility_test_scenarios.md)** | 40 Real-World Mutation Scenarios | 8 categories (React, SPA, forms, nav, ambiguity, async, responsive, chaining) with pass/fail criteria. |
+| **[21. Developer Experience Evaluation](developer_experience_evaluation.md)** | DX Scoring Methodology | 7 evaluation dimensions (1–5 scale), task-based protocol, structured interview questions, aggregate scoring formulas. |
+| **[22. Pilot Evaluation Methodology](pilot_evaluation_methodology.md)** | Pilot Metrics Framework | Precision, recall, FPR, abstention rate, latency, integration time, DX score — strictly separate from canonical benchmark. |
+| **[23. Product Roadmap](roadmap.md)** | Prioritised Enhancement Backlog | 3-tier roadmap: near-term pilot-driven (1.x), mid-term community-driven (2.x), research directions (2.0+). |
+| **[24. Real-World Pilot Report](real_world_pilot_report.md)** | Pilot Results Template | Structured report with compatibility matrix, aggregate metrics, failure analysis, and feedback summary (all sections PENDING). |
 
 ---
 

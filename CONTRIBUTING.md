@@ -17,7 +17,7 @@ Thank you for your interest in contributing to the **Self-Healing UI Automation 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/moonsanctum/selfhealing-ui.git
+   git clone https://github.com/Optimus1o1/selfhealing-ui.git
    cd selfhealing-ui
    ```
 
@@ -66,6 +66,53 @@ Thank you for your interest in contributing to the **Self-Healing UI Automation 
 
 - Format code using standard PEP 8 conventions.
 - All new features or locator scoring adaptations must include unit tests in `tests/unit/`.
-- Ensure all 23 unit and integration tests pass before opening a PR.
+- Ensure all 30 unit and healing tests pass before opening a PR.
 - Conventional Commits format is enforced: `feat:`, `fix:`, `test:`, `docs:`, `refactor:`.
+- Use the [Pull Request Template](/.github/PULL_REQUEST_TEMPLATE.md) — it will load automatically when you open a PR on GitHub.
+
+---
+
+## Release Contribution Policy
+
+### What Can Be Contributed
+
+| Contribution Type | Requirements |
+|---|---|
+| Bug fixes | Must include a regression test and pass the full benchmark suite |
+| Documentation | Factual accuracy required — no invented claims or results |
+| New test scenarios | Must not modify existing benchmark datasets |
+| Configuration options | Must be backward-compatible with existing `configs/default.yaml` |
+| Dashboard improvements | Must not alter healing engine behaviour |
+| Compatibility reports | Submit via the [Compatibility Report](https://github.com/Optimus1o1/selfhealing-ui/issues/new?template=compatibility_report.yml) issue template |
+
+### What Requires Discussion First
+
+- Changes to similarity scoring weights or dimensions
+- Changes to threshold or margin defaults
+- New locator strategy support
+- New dependencies
+- Breaking API changes
+
+Open a [Feature Request](https://github.com/Optimus1o1/selfhealing-ui/issues/new?template=feature_request.yml) and wait for maintainer feedback before submitting a PR for these.
+
+### Benchmark Protection
+
+Any PR that modifies the healing engine (`intelligence.py`, `detection.py`, `scanner.py`) must include:
+
+1. Full benchmark run before the change (109 scenarios).
+2. Full benchmark run after the change.
+3. Before/after comparison table in the PR description.
+4. No reduction in precision (must remain 100%).
+5. No increase in false positive rate (must remain 0%).
+
+---
+
+## Discussion Guidelines
+
+- **Be specific.** Include version numbers, OS, Python version, and Playwright version.
+- **Provide evidence.** Attach CLI output, dashboard screenshots, or healing event logs.
+- **One topic per issue.** Do not combine unrelated bugs or feature requests.
+- **Search first.** Check existing issues before opening a new one.
+- **Be constructive.** Focus on the technical problem, not on the person.
+- **Respect the philosophy.** SelfHeal is deterministic by design. Proposals that introduce non-reproducible behaviour (cloud APIs, probabilistic models) must clearly justify the trade-off.
 

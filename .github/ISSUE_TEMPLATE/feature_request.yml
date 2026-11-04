@@ -1,0 +1,69 @@
+name: "\U0001F680 Feature Request"
+description: Suggest a new feature or enhancement for SelfHeal
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement to SelfHeal. Please describe your idea clearly so we can evaluate it.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: "What problem does this feature solve? Is it related to a specific limitation?"
+      placeholder: "I'm frustrated when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: "Describe the feature you'd like to see."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: "Have you considered any alternative approaches?"
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      options:
+        - Healing Engine (similarity, thresholds, scoring)
+        - Detection (failure classification, DOM scanning)
+        - Dashboard (Streamlit monitoring)
+        - CLI (command-line interface)
+        - Configuration (YAML, runtime settings)
+        - API (SelfHealingPage, SelfHealingLocator)
+        - Compatibility (new browsers, frameworks, platforms)
+        - Documentation
+        - Testing & Evaluation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (your assessment)
+      options:
+        - Low — nice to have
+        - Medium — would improve my workflow
+        - High — blocking my adoption of SelfHeal
+        - Critical — affects production reliability
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and the roadmap for duplicates
+          required: true
+        - label: This feature aligns with SelfHeal's deterministic (non-LLM) philosophy

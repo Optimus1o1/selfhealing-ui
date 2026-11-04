@@ -1,0 +1,93 @@
+name: "\U0001F9EA Compatibility Report"
+description: Report SelfHeal's behaviour with a specific application type or framework
+title: "[Compatibility]: "
+labels: ["compatibility", "pilot"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us understand how SelfHeal performs with different application architectures. This data directly informs our compatibility roadmap.
+
+  - type: input
+    id: version
+    attributes:
+      label: SelfHeal Version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: app-type
+    attributes:
+      label: Application Type
+      options:
+        - React (CRA / Vite / Next.js)
+        - Vue.js (Nuxt / Vite)
+        - Angular
+        - Svelte / SvelteKit
+        - Static HTML/CSS/JS
+        - WordPress / CMS
+        - E-commerce (Shopify / WooCommerce / custom)
+        - SaaS Dashboard
+        - Form-heavy Application
+        - Mobile Web (responsive)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: framework-version
+    attributes:
+      label: Frontend Framework Version
+      description: "e.g., React 18.2, Next.js 14.1"
+      placeholder: "React 18.2"
+
+  - type: textarea
+    id: scenarios-tested
+    attributes:
+      label: Scenarios Tested
+      description: "Describe the UI mutations you tested (attribute changes, restructuring, text changes, etc.)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: healing-results
+    attributes:
+      label: Healing Results
+      description: "How many locators were tested? How many healed correctly? Any false positives?"
+      value: |
+        - Total locators tested:
+        - Healed correctly:
+        - Failed to heal (false negatives):
+        - Healed incorrectly (false positives):
+        - Correctly rejected (ambiguous):
+    validations:
+      required: true
+
+  - type: textarea
+    id: issues
+    attributes:
+      label: Issues Encountered
+      description: "Any problems specific to this application type?"
+
+  - type: dropdown
+    id: overall
+    attributes:
+      label: Overall Compatibility Assessment
+      options:
+        - Fully compatible — all scenarios worked as expected
+        - Mostly compatible — minor issues
+        - Partially compatible — some scenarios failed
+        - Incompatible — most scenarios failed
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I tested with an application I own or have permission to test
+          required: true
+        - label: I verified baseline creation completed successfully before mutating the UI
+          required: true

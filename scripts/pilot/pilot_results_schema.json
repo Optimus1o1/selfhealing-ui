@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SelfHeal Pilot Result",
+  "description": "Anonymised pilot result record for a single participant. No personal identifiers or application secrets.",
+  "type": "object",
+  "required": ["participant_code", "environment", "application_category", "scenarios", "feedback"],
+  "properties": {
+    "participant_code": {
+      "type": "string",
+      "description": "Anonymised participant identifier (e.g., P001)",
+      "pattern": "^P\\d{3}$"
+    },
+    "environment": {
+      "type": "object",
+      "required": ["os", "python", "playwright", "selfheal"],
+      "properties": {
+        "os": { "type": "string", "description": "Operating system (e.g., Windows 11, Ubuntu 24.04)" },
+        "python": { "type": "string", "description": "Python version (e.g., 3.12.10)" },
+        "playwright": { "type": "string", "description": "Playwright version (e.g., 1.48.0)" },
+        "selfheal": { "type": "string", "description": "SelfHeal version", "const": "1.0.0" }
+      }
+    },
+    "application_category": {
+      "type": "string",
+      "enum": ["e-commerce", "saas-dashboard", "form-heavy", "spa", "react", "static-site", "cms", "other"],
+      "description": "Application type category (no URLs or names)"
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "mutation_type", "expected_outcome", "actual_outcome"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Scenario identifier (e.g., S001)",
+            "pattern": "^S\\d{3}$"
+          },
+          "mutation_type": {
+            "type": "string",
+            "enum": ["id_rename", "text_change", "class_change", "aria_change", "parent_restructure", "attribute_change", "tag_change", "position_shift", "element_removal", "element_hidden"],
+            "description": "Type of UI mutation applied"
+          },
+          "expected_outcome": {
+            "type": "string",
+            "enum": ["heal", "reject", "no_heal"],
+            "description": "What should happen: heal (correct replacement exists), reject (ambiguous), no_heal (element removed/hidden)"
+          },
+          "actual_outcome": {
+            "type": "string",
+            "enum": ["healed", "incorrect_healing", "rejected_ambiguous", "failed", "passed", "error"],
+            "description": "What actually happened"
+          },
+          "similarity_score": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Top candidate similarity score (null if no candidates)"
+          },
+          "score_margin": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Margin between top two candidates (null if fewer than 2)"
+          },
+          "decision": {
+            "type": ["string", "null"],
+            "enum": ["APPROVED", "REJECTED_BELOW_THRESHOLD", "REJECTED_AMBIGUOUS", "REJECTED_NO_CANDIDATES", null],
+            "description": "Decision engine outcome"
+          },
+          "execution_result": {
+            "type": "string",
+            "enum": ["PASS", "FAIL", "ERROR"],
+            "description": "Test execution result after healing attempt"
+          },
+          "latency_ms": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "description": "End-to-end healing latency in milliseconds"
+          }
+        }
+      }
+    },
+    "feedback": {
+      "type": "object",
+      "properties": {
+        "installation_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "integration_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "api_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "healing_accuracy_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "rejection_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "performance_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "dashboard_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "documentation_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "overall_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "would_recommend": { "type": "boolean" },
+        "top_feature_request": { "type": "string" },
+        "top_limitation": { "type": "string" },
+        "integration_time_minutes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of submission"
+    }
+  }
+}
+

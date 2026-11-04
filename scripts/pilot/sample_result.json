@@ -1,0 +1,62 @@
+{
+  "participant_code": "P000",
+  "environment": {
+    "os": "Windows 11",
+    "python": "3.12.10",
+    "playwright": "1.48.0",
+    "selfheal": "1.0.0"
+  },
+  "application_category": "e-commerce",
+  "scenarios": [
+    {
+      "id": "S001",
+      "mutation_type": "id_rename",
+      "expected_outcome": "heal",
+      "actual_outcome": "healed",
+      "similarity_score": 0.92,
+      "score_margin": 0.27,
+      "decision": "APPROVED",
+      "execution_result": "PASS",
+      "latency_ms": 2850
+    },
+    {
+      "id": "S002",
+      "mutation_type": "text_change",
+      "expected_outcome": "heal",
+      "actual_outcome": "healed",
+      "similarity_score": 0.88,
+      "score_margin": 0.23,
+      "decision": "APPROVED",
+      "execution_result": "PASS",
+      "latency_ms": 2920
+    },
+    {
+      "id": "S003",
+      "mutation_type": "class_change",
+      "expected_outcome": "heal",
+      "actual_outcome": "healed",
+      "similarity_score": 0.95,
+      "score_margin": 0.30,
+      "decision": "APPROVED",
+      "execution_result": "PASS",
+      "latency_ms": 2780
+    }
+  ],
+  "feedback": {
+    "installation_score": 5,
+    "integration_score": 5,
+    "api_score": 5,
+    "healing_accuracy_score": 5,
+    "rejection_score": 5,
+    "performance_score": 4,
+    "dashboard_score": 5,
+    "documentation_score": 5,
+    "overall_score": 5,
+    "would_recommend": true,
+    "top_feature_request": "Shadow DOM support",
+    "top_limitation": "No iframe element healing",
+    "integration_time_minutes": 5
+  },
+  "timestamp": "2026-11-04T17:00:00+05:30"
+}
+

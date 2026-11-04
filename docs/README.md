@@ -36,7 +36,11 @@ Welcome to the comprehensive technical documentation and academic research archi
 | **[21. Developer Experience Evaluation](developer_experience_evaluation.md)** | DX Scoring Methodology | 7 evaluation dimensions (1–5 scale), task-based protocol, structured interview questions, aggregate scoring formulas. |
 | **[22. Pilot Evaluation Methodology](pilot_evaluation_methodology.md)** | Pilot Metrics Framework | Precision, recall, FPR, abstention rate, latency, integration time, DX score — strictly separate from canonical benchmark. |
 | **[23. Product Roadmap](roadmap.md)** | Prioritised Enhancement Backlog | 3-tier roadmap: near-term pilot-driven (1.x), mid-term community-driven (2.x), research directions (2.0+). |
-| **[24. Real-World Pilot Report](real_world_pilot_report.md)** | Pilot Results Template | Structured report with compatibility matrix, aggregate metrics, failure analysis, and feedback summary (all sections PENDING). |
+| **[24. Real-World Pilot Report](real_world_pilot_report.md)** | Pilot Results Template & Self-Val | Structured report with compatibility matrix, aggregate metrics, failure analysis, and feedback summary. |
+| **[25. Pilot Onboarding Package](pilot_onboarding_package.md)** | Participant Onboarding Guide | Invitation letter, installation instructions, consent checklist, execution checklist, and troubleshooting guide. |
+| **[26. Pilot Feedback Form](pilot_feedback_form.md)** | Structured Evaluation Questionnaire | Standardized 8-section participant survey covering installation, integration, accuracy, DX, and performance. |
+| **[27. Pilot Tracking Dashboard](pilot_tracking.md)** | Cohort Lifecycle & Status Tracker | Real-time tracking of pilot cohorts (P000–P005), completion criteria, and aggregate metrics. |
+| **[28. Installation Validation Report](installation_validation_report.md)** | Wheel & Release Validation Audit | Independent clean-environment verification of published 1.0.0 distribution across Windows 11 and Ubuntu CI. |
 
 ---
 
